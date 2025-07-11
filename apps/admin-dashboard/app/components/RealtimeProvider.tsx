@@ -37,10 +37,15 @@ export function RealtimeProvider({ children }: RealtimeProviderProps) {
     subscriptionTypes: {},
   });
 
-  // Initialize WebSocket connection
+  // Initialize WebSocket connection (disabled to prevent refresh loop)
   useEffect(() => {
     // Only run on client side
     if (typeof window === 'undefined') return;
+    
+    // Temporarily disable WebSocket to prevent refresh loop
+    console.log('WebSocket connection disabled - running in offline mode');
+    setIsConnected(false);
+    return; // Exit early - no WebSocket connection
     
     const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
     const wsUrl = `${protocol}//${window.location.host}/api/admin/websocket`;
