@@ -68,18 +68,25 @@ export function RealtimeProvider({ children }: RealtimeProviderProps) {
       }
     };
 
-    ws.onclose = () => {
-      console.log('Admin WebSocket disconnected');
+    ws.onclose = (event) => {
+      console.log('Admin WebSocket disconnected', event.code, event.reason);
       setIsConnected(false);
       setWebsocket(null);
       
-      // Attempt to reconnect after 3 seconds
-      setTimeout(() => {
-        if (!websocket || websocket.readyState === WebSocket.CLOSED) {
-          // Trigger re-initialization
-          window.location.reload();
-        }
-      }, 3000);
+      // Only attempt reconnection for normal closures (not server unavailable)
+      if (event.code !== 1006 && event.code !== 1011) {
+        // Attempt to reconnect after 30 seconds for normal disconnections
+        setTimeout(() => {
+          if (!websocket || websocket.readyState === WebSocket.CLOSED) {
+            // Re-initialize WebSocket (not reload page)
+            console.log('Attempting WebSocket reconnection...');
+            // This will trigger the useEffect to run again
+            setWebsocket(null);
+          }
+        }, 30000);
+      } else {
+        console.log('WebSocket server unavailable, running in offline mode');
+      }
     };
 
     ws.onerror = (error) => {
