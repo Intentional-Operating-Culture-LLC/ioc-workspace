@@ -1,5 +1,6 @@
 'use client';
 
+// Force deployment - WebSocket fix applied
 import { useEffect, useState } from 'react';
 import { AdminDashboard } from './components/AdminDashboard';
 import { AuthWrapper } from './components/AuthWrapper';
