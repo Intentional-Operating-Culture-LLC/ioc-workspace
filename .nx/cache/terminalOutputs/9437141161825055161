@@ -1,0 +1,5 @@
+
+> @ioc-core/config@0.1.0 build
+> echo 'Config package uses JS files directly, no build needed'
+
+Config package uses JS files directly, no build needed

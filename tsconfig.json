@@ -1,0 +1,66 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@ioc/api-utils": ["libs/shared/api-utils/src/index.ts"],
+      "@ioc/config": ["libs/shared/config/src/index.ts"],
+      "@ioc/data-access": ["libs/shared/data-access/src/index.ts"],
+      "@ioc/types": ["libs/shared/types/src/index.ts"],
+      "@ioc/ui": ["libs/shared/ui/src/index.ts"],
+      "@ioc/lambda-analytics": ["libs/features/lambda-analytics/src/index.ts"],
+      "@ioc/ocean-analytics": ["libs/assessment/ocean-analytics/src/index.ts"],
+      "@ioc/scoring": ["libs/assessment/scoring/src/index.ts"],
+      "@ioc/test-utils": ["libs/testing/test-utils/src/index.ts"]
+    }
+  },
+  "files": [],
+  "include": [],
+  "references": [
+    {
+      "path": "./apps/admin-dashboard"
+    },
+    {
+      "path": "./apps/beta-application"
+    },
+    {
+      "path": "./apps/beta-portal"
+    },
+    {
+      "path": "./apps/dev-sandbox"
+    },
+    {
+      "path": "./apps/developer-tools"
+    },
+    {
+      "path": "./apps/main-application"
+    },
+    {
+      "path": "./libs/assessment/ocean-analytics"
+    },
+    {
+      "path": "./libs/assessment/scoring"
+    },
+    {
+      "path": "./libs/features/lambda-analytics"
+    },
+    {
+      "path": "./libs/shared/api-utils"
+    },
+    {
+      "path": "./libs/shared/config"
+    },
+    {
+      "path": "./libs/shared/data-access"
+    },
+    {
+      "path": "./libs/shared/types"
+    },
+    {
+      "path": "./libs/shared/ui"
+    },
+    {
+      "path": "./libs/testing/test-utils"
+    }
+  ]
+}

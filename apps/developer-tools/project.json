@@ -1,0 +1,38 @@
+{
+  "name": "developer-tools",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/developer-tools",
+  "projectType": "application",
+  "tags": [
+    "scope:dev",
+    "type:app"
+  ],
+  "// targets": "to see all targets run: nx show project developer-tools --web",
+  "targets": {
+    "deploy": {
+      "executor": "@nx/workspace:run-commands",
+      "options": {
+        "commands": [
+          "echo \"Deploying developer-tools...\"",
+          "npm run build",
+          "echo \"Deploy to developer-tools environment\""
+        ],
+        "parallel": false
+      },
+      "configurations": {
+        "production": {
+          "commands": [
+            "nx build developer-tools --configuration=production",
+            "echo \"Deploy to production for developer-tools\""
+          ]
+        },
+        "staging": {
+          "commands": [
+            "nx build developer-tools --configuration=staging",
+            "echo \"Deploy to staging for developer-tools\""
+          ]
+        }
+      }
+    }
+  }
+}

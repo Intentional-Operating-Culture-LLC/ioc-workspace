@@ -1,0 +1,38 @@
+{
+  "name": "beta-portal",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/beta-portal",
+  "projectType": "application",
+  "tags": [
+    "scope:beta",
+    "type:app"
+  ],
+  "// targets": "to see all targets run: nx show project beta-portal --web",
+  "targets": {
+    "deploy": {
+      "executor": "@nx/workspace:run-commands",
+      "options": {
+        "commands": [
+          "echo \"Deploying beta-portal...\"",
+          "npm run build",
+          "echo \"Deploy to beta-portal environment\""
+        ],
+        "parallel": false
+      },
+      "configurations": {
+        "production": {
+          "commands": [
+            "nx build beta-portal --configuration=production",
+            "echo \"Deploy to production for beta-portal\""
+          ]
+        },
+        "staging": {
+          "commands": [
+            "nx build beta-portal --configuration=staging",
+            "echo \"Deploy to staging for beta-portal\""
+          ]
+        }
+      }
+    }
+  }
+}

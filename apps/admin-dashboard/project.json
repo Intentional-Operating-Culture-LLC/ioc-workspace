@@ -1,0 +1,93 @@
+{
+  "name": "admin-dashboard",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/admin-dashboard/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/next:build",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "options": {
+        "outputPath": "dist/apps/admin-dashboard"
+      },
+      "configurations": {
+        "production": {
+          "optimization": true,
+          "sourceMap": false,
+          "extractCss": true
+        },
+        "development": {
+          "optimization": false,
+          "sourceMap": true,
+          "extractCss": false
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/next:server",
+      "options": {
+        "buildTarget": "admin-dashboard:build",
+        "dev": true
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": [
+        "{options.outputFile}"
+      ],
+      "options": {
+        "lintFilePatterns": [
+          "apps/admin-dashboard/**/*.{ts,tsx,js,jsx}"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
+      "options": {
+        "jestConfig": "apps/admin-dashboard/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "deploy": {
+      "executor": "@nx/workspace:run-commands",
+      "options": {
+        "commands": [
+          "vercel --prod --token=$VERCEL_TOKEN"
+        ],
+        "cwd": "apps/admin-dashboard"
+      }
+    },
+    "deploy:preview": {
+      "executor": "@nx/workspace:run-commands",
+      "options": {
+        "commands": [
+          "vercel --token=$VERCEL_TOKEN"
+        ],
+        "cwd": "apps/admin-dashboard"
+      }
+    },
+    "analyze-bundle": {
+      "executor": "@nx/workspace:run-commands",
+      "options": {
+        "commands": [
+          "ANALYZE=true npm run build"
+        ],
+        "cwd": "apps/admin-dashboard"
+      }
+    },
+    "lighthouse": {
+      "executor": "@nx/workspace:run-commands",
+      "options": {
+        "commands": [
+          "npx lighthouse http://localhost:3001 --output=json --output-path=./lighthouse-report.json"
+        ],
+        "cwd": "apps/admin-dashboard"
+      }
+    }
+  }
+}

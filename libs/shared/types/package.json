@@ -1,0 +1,64 @@
+{
+  "name": "@ioc/types",
+  "version": "0.1.0",
+  "description": "Shared TypeScript types for IOC applications",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./marketing": {
+      "import": "./dist/marketing.js",
+      "require": "./dist/marketing.js",
+      "types": "./dist/marketing.d.ts"
+    },
+    "./analytics": {
+      "import": "./dist/analytics.js",
+      "require": "./dist/analytics.js",
+      "types": "./dist/analytics.d.ts"
+    },
+    "./auth": {
+      "import": "./dist/auth.js",
+      "require": "./dist/auth.js",
+      "types": "./dist/auth.d.ts"
+    },
+    "./database": {
+      "import": "./dist/database.js",
+      "require": "./dist/database.js",
+      "types": "./dist/database.d.ts"
+    },
+    "./api": {
+      "import": "./dist/api.js",
+      "require": "./dist/api.js",
+      "types": "./dist/api.d.ts"
+    },
+    "./dashboard": {
+      "import": "./dist/dashboard.js",
+      "require": "./dist/dashboard.js",
+      "types": "./dist/dashboard.d.ts"
+    },
+    "./*": {
+      "import": "./dist/*.js",
+      "require": "./dist/*.js",
+      "types": "./dist/*.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist",
+    "type-check": "tsc --noEmit",
+    "watch": "tsc --watch"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "files": [
+    "dist/**/*"
+  ],
+  "publishConfig": {
+    "access": "restricted"
+  }
+}

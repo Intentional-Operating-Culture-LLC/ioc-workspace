@@ -1,0 +1,54 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": [
+      "es2020",
+      "dom"
+    ],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@ioc/shared/ui": [
+        "libs/shared/ui/src/index.ts"
+      ],
+      "@ioc/shared/data-access": [
+        "libs/shared/data-access/src/index.ts"
+      ],
+      "@ioc/shared/types": [
+        "libs/shared/types/src/index.ts"
+      ],
+      "@ioc/shared/config": [
+        "libs/shared/config/src/index.js"
+      ],
+      "@ioc/shared/api-utils": [
+        "libs/shared/api-utils/src/index.ts"
+      ],
+      "@ioc/testing/test-utils": [
+        "libs/testing/test-utils/src/index.ts"
+      ],
+      "@ioc/features/lambda-analytics": [
+        "libs/features/lambda-analytics/src/index.ts"
+      ],
+      "@ioc/assessment/scoring": [
+        "libs/assessment/scoring/src/index.ts"
+      ],
+      "@ioc/assessment/ocean-analytics": [
+        "libs/assessment/ocean-analytics/src/index.ts"
+      ]
+    }
+  },
+  "exclude": [
+    "node_modules",
+    "tmp"
+  ]
+}

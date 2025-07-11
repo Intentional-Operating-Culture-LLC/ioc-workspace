@@ -1,0 +1,43 @@
+{
+  "run": {
+    "command": "nx build main-application --configuration=production",
+    "startTime": "2025-07-11T16:47:31.819Z",
+    "endTime": "2025-07-11T16:47:36.736Z",
+    "inner": false
+  },
+  "tasks": [
+    {
+      "taskId": "types:build",
+      "target": "build",
+      "projectName": "types",
+      "hash": "7240321683236392753",
+      "startTime": "2025-07-11T16:47:31.823Z",
+      "endTime": "2025-07-11T16:47:31.834Z",
+      "params": "",
+      "cacheStatus": "local-cache-hit",
+      "status": 0
+    },
+    {
+      "taskId": "config:build",
+      "target": "build",
+      "projectName": "config",
+      "hash": "9437141161825055161",
+      "startTime": "2025-07-11T16:47:31.824Z",
+      "endTime": "2025-07-11T16:47:31.839Z",
+      "params": "",
+      "cacheStatus": "local-cache-hit",
+      "status": 0
+    },
+    {
+      "taskId": "data-access:build",
+      "target": "build",
+      "projectName": "data-access",
+      "hash": "2961410423004714353",
+      "startTime": "2025-07-11T16:47:31.843Z",
+      "endTime": "2025-07-11T16:47:36.736Z",
+      "params": "",
+      "cacheStatus": "cache-miss",
+      "status": 1
+    }
+  ]
+}

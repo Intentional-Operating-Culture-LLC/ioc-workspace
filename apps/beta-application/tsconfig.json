@@ -1,0 +1,25 @@
+{
+  "extends": "../../packages/config/src/tsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@ioc/ui": ["../../packages/ui/src"],
+      "@ioc/ui/*": ["../../packages/ui/src/*"],
+      "@ioc/lib": ["../../packages/lib/src"],
+      "@ioc/lib/*": ["../../packages/lib/src/*"],
+      "@ioc/types": ["../../packages/types/src"],
+      "@ioc/types/*": ["../../packages/types/src/*"],
+      "@ioc/config": ["../../packages/config/src"],
+      "@ioc/config/*": ["../../packages/config/src/*"]
+    }
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

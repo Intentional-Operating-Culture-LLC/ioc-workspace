@@ -1,0 +1,58 @@
+{
+  "name": "ioc-beta",
+  "alias": ["beta.iocframework.com"],
+  "framework": "nextjs",
+  "buildCommand": "cd ../.. && npx turbo run build --filter=@ioc/beta",
+  "installCommand": "cd ../.. && npm ci",
+  "outputDirectory": ".next",
+  "ignoreCommand": "npx turbo-ignore @ioc/beta",
+  "env": {
+    "NEXT_PUBLIC_APP_NAME": "IOC Beta",
+    "NEXT_PUBLIC_API_URL": "@api_url_beta",
+    "NEXT_PUBLIC_SUPABASE_URL": "@supabase_url_beta",
+    "NEXT_PUBLIC_SUPABASE_ANON_KEY": "@supabase_anon_key_beta",
+    "NEXT_PUBLIC_FEATURE_FLAGS": "@feature_flags_beta"
+  },
+  "build": {
+    "env": {
+      "NODE_ENV": "staging",
+      "ANALYZE": "false",
+      "NEXT_TELEMETRY_DISABLED": "1",
+      "ENABLE_EXPERIMENTAL_FEATURES": "true"
+    }
+  },
+  "functions": {
+    "app/api/**.ts": {
+      "maxDuration": 30,
+      "memory": 1024
+    }
+  },
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Beta-Environment",
+          "value": "true"
+        }
+      ]
+    }
+  ],
+  "authentication": {
+    "enabled": true,
+    "password": "@beta_access_password"
+  },
+  "regions": ["iad1"]
+}

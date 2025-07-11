@@ -1,0 +1,215 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222.2 84% 4.9%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 222.2 84% 4.9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 84% 4.9%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 224.3 76.3% 94.1%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Custom admin dashboard styles */
+.admin-gradient {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.metric-card {
+  @apply bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow duration-200;
+}
+
+.metric-value {
+  @apply text-2xl font-bold text-gray-900;
+}
+
+.metric-label {
+  @apply text-sm font-medium text-gray-500 uppercase tracking-wide;
+}
+
+.metric-change {
+  @apply text-sm font-medium;
+}
+
+.metric-change.positive {
+  @apply text-green-600;
+}
+
+.metric-change.negative {
+  @apply text-red-600;
+}
+
+.metric-change.neutral {
+  @apply text-gray-500;
+}
+
+.chart-container {
+  @apply bg-white rounded-lg shadow-sm border border-gray-200 p-6;
+}
+
+.chart-title {
+  @apply text-lg font-semibold text-gray-900 mb-4;
+}
+
+.realtime-indicator {
+  @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+}
+
+.realtime-indicator.connected {
+  @apply bg-green-100 text-green-800;
+}
+
+.realtime-indicator.disconnected {
+  @apply bg-red-100 text-red-800;
+}
+
+.realtime-indicator.connecting {
+  @apply bg-yellow-100 text-yellow-800;
+}
+
+.pulse-dot {
+  @apply w-2 h-2 bg-current rounded-full animate-pulse;
+}
+
+/* Navigation styles */
+.nav-link {
+  @apply flex items-center px-3 py-2 text-sm font-medium rounded-md transition-colors duration-200;
+}
+
+.nav-link.active {
+  @apply bg-blue-100 text-blue-700;
+}
+
+.nav-link:not(.active) {
+  @apply text-gray-600 hover:bg-gray-50 hover:text-gray-900;
+}
+
+/* Assessment specific styles */
+.assessment-tier-badge {
+  @apply inline-flex items-center px-2 py-1 rounded-full text-xs font-medium;
+}
+
+.assessment-tier-badge.individual {
+  @apply bg-blue-100 text-blue-800;
+}
+
+.assessment-tier-badge.executive {
+  @apply bg-purple-100 text-purple-800;
+}
+
+.assessment-tier-badge.organizational {
+  @apply bg-green-100 text-green-800;
+}
+
+.ocean-trait-bar {
+  @apply bg-gray-200 rounded-full h-3 overflow-hidden;
+}
+
+.ocean-trait-fill {
+  @apply h-full rounded-full transition-all duration-500 ease-out;
+}
+
+.ocean-trait-fill.openness {
+  @apply bg-blue-500;
+}
+
+.ocean-trait-fill.conscientiousness {
+  @apply bg-green-500;
+}
+
+.ocean-trait-fill.extraversion {
+  @apply bg-yellow-500;
+}
+
+.ocean-trait-fill.agreeableness {
+  @apply bg-red-500;
+}
+
+.ocean-trait-fill.neuroticism {
+  @apply bg-purple-500;
+}
+
+/* Loading states */
+.loading-shimmer {
+  @apply animate-pulse bg-gray-200 rounded;
+}
+
+.loading-dots::after {
+  content: '';
+  @apply inline-block w-4 animate-pulse;
+  animation: dots 1.5s infinite;
+}
+
+@keyframes dots {
+  0%, 20% { content: ''; }
+  40% { content: '.'; }
+  60% { content: '..'; }
+  80%, 100% { content: '...'; }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .metric-card {
+    @apply bg-gray-800 border-gray-700;
+  }
+  
+  .chart-container {
+    @apply bg-gray-800 border-gray-700;
+  }
+  
+  .metric-value {
+    @apply text-gray-100;
+  }
+  
+  .chart-title {
+    @apply text-gray-100;
+  }
+}

@@ -1,0 +1,266 @@
+name: Scheduled Maintenance
+
+on:
+  schedule:
+    # Run daily at 2 AM UTC
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+    inputs:
+      task:
+        description: 'Maintenance task to run'
+        required: true
+        default: 'all'
+        type: choice
+        options:
+          - all
+          - health-check
+          - cleanup
+          - security-scan
+          - performance-check
+
+jobs:
+  health-check:
+    name: Health Check All Services
+    runs-on: ubuntu-latest
+    if: github.event_name == 'schedule' || github.event.inputs.task == 'all' || github.event.inputs.task == 'health-check'
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check Production Services
+        run: |
+          services=(
+            "https://iocframework.com/api/health"
+            "https://admin.iocframework.com/api/health"
+            "https://beta.iocframework.com/api/health"
+          )
+          
+          for service in "${services[@]}"; do
+            echo "Checking $service..."
+            response=$(curl -s -w "\n%{http_code}" "$service")
+            http_code=$(echo "$response" | tail -n1)
+            
+            if [ "$http_code" != "200" ]; then
+              echo "❌ $service returned $http_code"
+              exit 1
+            else
+              echo "✅ $service is healthy"
+            fi
+          done
+
+      - name: Notify on Failure
+        if: failure()
+        uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: '🚨 Health Check Failed',
+              body: 'Automated health check detected service issues. Check the [workflow run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) for details.',
+              labels: ['urgent', 'production']
+            });
+
+  cleanup:
+    name: Cleanup Old Artifacts
+    runs-on: ubuntu-latest
+    if: github.event_name == 'schedule' || github.event.inputs.task == 'all' || github.event.inputs.task == 'cleanup'
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Delete old artifacts
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const artifacts = await github.rest.actions.listArtifactsForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              per_page: 100
+            });
+            
+            const oneWeekAgo = new Date();
+            oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+            
+            for (const artifact of artifacts.data.artifacts) {
+              const createdAt = new Date(artifact.created_at);
+              if (createdAt < oneWeekAgo) {
+                console.log(`Deleting artifact: ${artifact.name} (${artifact.created_at})`);
+                await github.rest.actions.deleteArtifact({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  artifact_id: artifact.id
+                });
+              }
+            }
+
+      - name: Clean npm cache
+        run: |
+          npm cache clean --force
+          npx nx reset
+
+  security-scan:
+    name: Security Vulnerability Scan
+    runs-on: ubuntu-latest
+    if: github.event_name == 'schedule' || github.event.inputs.task == 'all' || github.event.inputs.task == 'security-scan'
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18.x'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run npm audit
+        run: |
+          npm audit --production > audit-report.txt || true
+          cat audit-report.txt
+
+      - name: Check for critical vulnerabilities
+        run: |
+          if grep -q "critical" audit-report.txt; then
+            echo "❌ Critical vulnerabilities found!"
+            exit 1
+          else
+            echo "✅ No critical vulnerabilities found"
+          fi
+
+      - name: Upload audit report
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: security-audit-report
+          path: audit-report.txt
+          retention-days: 30
+
+  performance-check:
+    name: Performance Baseline Check
+    runs-on: ubuntu-latest
+    if: github.event_name == 'schedule' || github.event.inputs.task == 'all' || github.event.inputs.task == 'performance-check'
+    strategy:
+      matrix:
+        app: [main-application, admin-dashboard, beta-application]
+        include:
+          - app: main-application
+            url: https://iocframework.com
+          - app: admin-dashboard
+            url: https://admin.iocframework.com
+          - app: beta-application
+            url: https://beta.iocframework.com
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run Lighthouse CI
+        uses: treosh/lighthouse-ci-action@v10
+        with:
+          urls: ${{ matrix.url }}
+          uploadArtifacts: true
+          temporaryPublicStorage: true
+
+      - name: Check performance scores
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const fs = require('fs');
+            const results = JSON.parse(fs.readFileSync('.lighthouseci/lhr-*.json', 'utf8'));
+            
+            const scores = {
+              performance: results.categories.performance.score * 100,
+              accessibility: results.categories.accessibility.score * 100,
+              'best-practices': results.categories['best-practices'].score * 100,
+              seo: results.categories.seo.score * 100
+            };
+            
+            console.log('Lighthouse Scores:', scores);
+            
+            // Fail if any score is below threshold
+            const thresholds = {
+              performance: 70,
+              accessibility: 90,
+              'best-practices': 90,
+              seo: 90
+            };
+            
+            for (const [category, score] of Object.entries(scores)) {
+              if (score < thresholds[category]) {
+                console.error(`❌ ${category} score (${score}) is below threshold (${thresholds[category]})`);
+                process.exit(1);
+              }
+            }
+            
+            console.log('✅ All scores meet thresholds');
+
+  dependency-updates:
+    name: Check for Dependency Updates
+    runs-on: ubuntu-latest
+    if: github.event_name == 'schedule' || github.event.inputs.task == 'all'
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18.x'
+          cache: 'npm'
+
+      - name: Check for updates
+        run: |
+          npx npm-check-updates --format group > updates.txt
+          cat updates.txt
+
+      - name: Create issue if updates available
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const fs = require('fs');
+            const updates = fs.readFileSync('updates.txt', 'utf8');
+            
+            if (updates.includes('All dependencies match the latest package versions')) {
+              console.log('✅ All dependencies are up to date');
+              return;
+            }
+            
+            // Check if issue already exists
+            const issues = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              labels: 'dependencies',
+              state: 'open'
+            });
+            
+            if (issues.data.length === 0) {
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title: '📦 Dependency Updates Available',
+                body: `The following dependency updates are available:\n\n\`\`\`\n${updates}\n\`\`\`\n\nRun \`npx npm-check-updates -u\` to update package.json`,
+                labels: ['dependencies', 'maintenance']
+              });
+            }
+
+  report:
+    name: Generate Maintenance Report
+    runs-on: ubuntu-latest
+    needs: [health-check, cleanup, security-scan, performance-check, dependency-updates]
+    if: always()
+    steps:
+      - name: Generate summary
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const jobs = ${{ toJSON(needs) }};
+            let summary = '# Maintenance Report\n\n';
+            summary += `Date: ${new Date().toISOString()}\n\n`;
+            summary += '## Results\n\n';
+            
+            for (const [job, result] of Object.entries(jobs)) {
+              const status = result.result === 'success' ? '✅' : '❌';
+              summary += `- ${status} ${job.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}\n`;
+            }
+            
+            // Write to summary
+            await core.summary
+              .addRaw(summary)
+              .write();

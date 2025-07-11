@@ -1,0 +1,136 @@
+{
+  "name": "@ioc/lib",
+  "version": "0.1.0",
+  "description": "IOC Core shared business logic library",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./utils": {
+      "import": "./dist/utils/index.js",
+      "require": "./dist/utils/index.js",
+      "types": "./dist/utils/index.d.ts"
+    },
+    "./utils/*": {
+      "import": "./dist/utils/*.js",
+      "require": "./dist/utils/*.js",
+      "types": "./dist/utils/*.d.ts"
+    },
+    "./contexts": {
+      "import": "./dist/contexts/index.js",
+      "require": "./dist/contexts/index.js",
+      "types": "./dist/contexts/index.d.ts"
+    },
+    "./contexts/*": {
+      "import": "./dist/contexts/*.js",
+      "require": "./dist/contexts/*.js",
+      "types": "./dist/contexts/*.d.ts"
+    },
+    "./contexts/auth-context": {
+      "import": "./dist/contexts/auth-context.js",
+      "require": "./dist/contexts/auth-context.js",
+      "types": "./dist/contexts/auth-context.d.ts"
+    },
+    "./contexts/ceo-auth-context": {
+      "import": "./dist/contexts/ceo-auth-context.js",
+      "require": "./dist/contexts/ceo-auth-context.js",
+      "types": "./dist/contexts/ceo-auth-context.d.ts"
+    },
+    "./contexts/websocket-context": {
+      "import": "./dist/contexts/websocket-context.js",
+      "require": "./dist/contexts/websocket-context.js",
+      "types": "./dist/contexts/websocket-context.d.ts"
+    },
+    "./database": {
+      "import": "./dist/database/index.js",
+      "require": "./dist/database/index.js",
+      "types": "./dist/database/index.d.ts"
+    },
+    "./database/*": {
+      "import": "./dist/database/*.js",
+      "require": "./dist/database/*.js",
+      "types": "./dist/database/*.d.ts"
+    },
+    "./supabase": {
+      "import": "./dist/supabase/index.js",
+      "require": "./dist/supabase/index.js",
+      "types": "./dist/supabase/index.d.ts"
+    },
+    "./supabase/*": {
+      "import": "./dist/supabase/*.js",
+      "require": "./dist/supabase/*.js",
+      "types": "./dist/supabase/*.d.ts"
+    },
+    "./engines": {
+      "import": "./dist/engines/index.js",
+      "require": "./dist/engines/index.js",
+      "types": "./dist/engines/index.d.ts"
+    },
+    "./engines/*": {
+      "import": "./dist/engines/*.js",
+      "require": "./dist/engines/*.js",
+      "types": "./dist/engines/*.d.ts"
+    },
+    "./performance": {
+      "import": "./dist/performance/index.js",
+      "require": "./dist/performance/index.js",
+      "types": "./dist/performance/index.d.ts"
+    },
+    "./performance/*": {
+      "import": "./dist/performance/*.js",
+      "require": "./dist/performance/*.js",
+      "types": "./dist/performance/*.d.ts"
+    },
+    "./zoho": {
+      "import": "./dist/zoho/index.js",
+      "require": "./dist/zoho/index.js",
+      "types": "./dist/zoho/index.d.ts"
+    },
+    "./zoho/*": {
+      "import": "./dist/zoho/*.js",
+      "require": "./dist/zoho/*.js",
+      "types": "./dist/zoho/*.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "clean": "rm -rf dist",
+    "prepare": "npm run build"
+  },
+  "files": [
+    "dist/**/*",
+    "src/**/*"
+  ],
+  "dependencies": {
+    "date-fns": "^4.1.0",
+    "socket.io-client": "^4.7.0",
+    "axios": "^1.6.0",
+    "@supabase/supabase-js": "^2.50.0",
+    "@supabase/ssr": "^0.6.1",
+    "next": "^15.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^2.6.0"
+  },
+  "peerDependencies": {
+    "@supabase/supabase-js": "^2.50.0",
+    "@supabase/ssr": "^0.6.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "next": "^15.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.0.0",
+    "typescript": "^5.8.3"
+  },
+  "publishConfig": {
+    "access": "restricted"
+  }
+}

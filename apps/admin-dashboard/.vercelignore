@@ -1,0 +1,7 @@
+../../src/**
+../../packages/**
+../**/*.ts
+../**/*.tsx
+!./app/**
+!./components/**
+!./lib/**

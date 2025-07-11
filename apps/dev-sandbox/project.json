@@ -1,0 +1,111 @@
+{
+  "name": "dev-sandbox",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/dev-sandbox/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/next:build",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "options": {
+        "outputPath": "dist/apps/dev-sandbox"
+      },
+      "configurations": {
+        "production": {
+          "optimization": true,
+          "sourceMap": false,
+          "extractCss": true
+        },
+        "development": {
+          "optimization": false,
+          "sourceMap": true,
+          "extractCss": false
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/next:server",
+      "options": {
+        "buildTarget": "dev-sandbox:build",
+        "dev": true
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": [
+        "{options.outputFile}"
+      ],
+      "options": {
+        "lintFilePatterns": [
+          "apps/dev-sandbox/**/*.{ts,tsx,js,jsx}"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
+      "options": {
+        "jestConfig": "apps/dev-sandbox/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "deploy": {
+      "executor": "@nx/workspace:run-commands",
+      "options": {
+        "commands": [
+          "vercel --prod --token=$VERCEL_TOKEN"
+        ],
+        "cwd": "apps/dev-sandbox"
+      }
+    },
+    "deploy:preview": {
+      "executor": "@nx/workspace:run-commands",
+      "options": {
+        "commands": [
+          "vercel --token=$VERCEL_TOKEN"
+        ],
+        "cwd": "apps/dev-sandbox"
+      }
+    },
+    "docker:build": {
+      "executor": "@nx/workspace:run-commands",
+      "options": {
+        "commands": [
+          "docker build -f Dockerfile -t ioc-dev-sandbox:latest ."
+        ],
+        "cwd": "apps/dev-sandbox"
+      }
+    },
+    "docker:run": {
+      "executor": "@nx/workspace:run-commands",
+      "options": {
+        "commands": [
+          "docker run -p 3010:3000 --env-file .env.local ioc-dev-sandbox:latest"
+        ],
+        "cwd": "apps/dev-sandbox"
+      }
+    },
+    "analyze-bundle": {
+      "executor": "@nx/workspace:run-commands",
+      "options": {
+        "commands": [
+          "ANALYZE=true npm run build"
+        ],
+        "cwd": "apps/dev-sandbox"
+      }
+    },
+    "lighthouse": {
+      "executor": "@nx/workspace:run-commands",
+      "options": {
+        "commands": [
+          "npx lighthouse http://localhost:3010 --output=json --output-path=./lighthouse-report.json"
+        ],
+        "cwd": "apps/dev-sandbox"
+      }
+    }
+  }
+}

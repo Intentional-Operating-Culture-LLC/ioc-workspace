@@ -1,0 +1,39 @@
+{
+  "timestamp": "2025-07-11T13:46:30.009Z",
+  "stats": {
+    "filesProcessed": 865,
+    "filesCopied": 868,
+    "directoriesCreated": 11,
+    "errors": [],
+    "warnings": []
+  },
+  "configuration": {
+    "source": "/home/darren/ioc-core",
+    "target": "/home/darren/ioc-workspace",
+    "options": {
+      "preserveGitHistory": true,
+      "validateImports": true,
+      "generateReports": true,
+      "backupBeforeMigration": true,
+      "installDependencies": true,
+      "force": true
+    }
+  },
+  "mappings": {
+    "apps": {
+      "apps/admin": "apps/admin-dashboard",
+      "apps/production": "apps/main-application",
+      "apps/beta": "apps/beta-application",
+      "apps/dev": "apps/dev-sandbox"
+    },
+    "packages": {
+      "packages/ui": "libs/shared/ui",
+      "packages/lib": "libs/shared/data-access",
+      "packages/types": "libs/shared/types",
+      "packages/config": "libs/shared/config",
+      "packages/api-utils": "libs/shared/api-utils",
+      "packages/test-utils": "libs/testing/test-utils",
+      "packages/lambda-analytics": "libs/features/lambda-analytics"
+    }
+  }
+}

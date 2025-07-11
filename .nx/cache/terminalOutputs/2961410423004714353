@@ -1,0 +1,498 @@
+
+> @ioc/lib@0.1.0 build
+> tsc
+
+src/ai-dual-system/api/feedback-loop-api.ts(175,15): error TS18004: No value exists in scope for the shorthand property 'optimizationMetrics'. Either declare one or provide an initializer.
+src/ai-dual-system/api/feedback-loop-api.ts(275,29): error TS2304: Cannot find name 'optimizationMetrics'.
+src/ai-dual-system/services/a1-integration-service.ts(424,16): error TS2339: Property 'difficulty' does not exist on type 'EnhancedPrompt'.
+src/ai-dual-system/services/a1-integration-service.ts(424,57): error TS2339: Property 'difficulty' does not exist on type 'EnhancedPrompt'.
+src/ai-dual-system/services/dual-ai-service.ts(10,37): error TS2307: Cannot find module '../infrastructure/cache-strategy' or its corresponding type declarations.
+src/ai-dual-system/services/dual-ai-service.ts(11,36): error TS2307: Cannot find module '../infrastructure/queue-manager' or its corresponding type declarations.
+src/ai-dual-system/services/dual-ai-service.ts(27,14): error TS2323: Cannot redeclare exported variable 'DualAIService'.
+src/ai-dual-system/services/dual-ai-service.ts(107,52): error TS2345: Argument of type '{ type: ContentType; status: "rejected" | "approved" | "modified" | "escalated"; duration: number; hasDisagreement: boolean; }' is not assignable to parameter of type 'number'.
+src/ai-dual-system/services/dual-ai-service.ts(126,48): error TS2345: Argument of type '{ type: ContentType; error: any; duration: number; }' is not assignable to parameter of type 'number'.
+src/ai-dual-system/services/dual-ai-service.ts(293,7): error TS2322: Type 'ValidationStatus' is not assignable to type '"rejected" | "approved" | "modified" | "escalated"'.
+  Type '"needs_improvement"' is not assignable to type '"rejected" | "approved" | "modified" | "escalated"'.
+src/ai-dual-system/services/dual-ai-service.ts(752,10): error TS2323: Cannot redeclare exported variable 'DualAIService'.
+src/ai-dual-system/services/dual-ai-service.ts(752,10): error TS2484: Export declaration conflicts with exported declaration of 'DualAIService'.
+src/ai-dual-system/services/index.ts(81,14): error TS2304: Cannot find name 'A1IntegrationService'.
+src/ai-dual-system/validation/bias-detectors.ts(28,14): error TS2323: Cannot redeclare exported variable 'BiasDetectionEngine'.
+src/ai-dual-system/validation/bias-detectors.ts(647,10): error TS2323: Cannot redeclare exported variable 'BiasDetectionEngine'.
+src/ai-dual-system/validation/bias-detectors.ts(647,10): error TS2484: Export declaration conflicts with exported declaration of 'BiasDetectionEngine'.
+src/ai-dual-system/validation/ethical-guidelines.ts(51,14): error TS2323: Cannot redeclare exported variable 'EthicalValidationEngine'.
+src/ai-dual-system/validation/ethical-guidelines.ts(633,10): error TS2323: Cannot redeclare exported variable 'EthicalValidationEngine'.
+src/ai-dual-system/validation/ethical-guidelines.ts(633,10): error TS2484: Export declaration conflicts with exported declaration of 'EthicalValidationEngine'.
+src/ai-dual-system/validation/ethical-guidelines.ts(633,35): error TS2484: Export declaration conflicts with exported declaration of 'EthicalPrinciple'.
+src/compliance/access/AccessControlManager.ts(19,29): error TS2307: Cannot find module './RoleManager' or its corresponding type declarations.
+src/compliance/access/AccessControlManager.ts(20,34): error TS2307: Cannot find module './PermissionEngine' or its corresponding type declarations.
+src/compliance/access/AccessControlManager.ts(21,32): error TS2307: Cannot find module './SessionManager' or its corresponding type declarations.
+src/compliance/access/AccessControlManager.ts(22,33): error TS2307: Cannot find module './AccessValidator' or its corresponding type declarations.
+src/compliance/access/AccessControlManager.ts(23,29): error TS2307: Cannot find module '../utils/AccessCache' or its corresponding type declarations.
+src/compliance/access/AccessControlManager.ts(248,18): error TS2339: Property 'revokeAllSessions' does not exist on type 'AccessControlManager'.
+src/compliance/access/AccessControlManager.ts(279,7): error TS2322: Type '"temporary_block"' is not assignable to type '"ip_whitelist" | "geo_restriction" | "time_restriction" | "device_restriction"'.
+src/compliance/access/AccessControlManager.ts(370,7): error TS2739: Type '{ type: string; category: "authentication"; }' is missing the following properties from type 'AuditAction': description, risk
+src/compliance/access/AccessControlManager.ts(371,7): error TS2741: Property 'name' is missing in type '{ type: string; id: any; }' but required in type 'AuditResource'.
+src/compliance/access/AccessControlManager.ts(391,7): error TS2741: Property 'name' is missing in type '{ type: "system"; id: string; }' but required in type 'AuditActor'.
+src/compliance/access/AccessControlManager.ts(392,7): error TS2739: Type '{ type: string; category: "authentication"; }' is missing the following properties from type 'AuditAction': description, risk
+src/compliance/access/AccessControlManager.ts(393,7): error TS2741: Property 'name' is missing in type '{ type: string; id: any; }' but required in type 'AuditResource'.
+src/compliance/access/AccessControlManager.ts(403,7): error TS2741: Property 'name' is missing in type '{ type: "user"; id: any; }' but required in type 'AuditActor'.
+src/compliance/access/AccessControlManager.ts(410,7): error TS2741: Property 'name' is missing in type '{ type: any; id: any; }' but required in type 'AuditResource'.
+src/compliance/access/AccessControlManager.ts(422,7): error TS2741: Property 'name' is missing in type '{ type: "user"; id: any; }' but required in type 'AuditActor'.
+src/compliance/access/AccessControlManager.ts(423,7): error TS2741: Property 'description' is missing in type '{ type: any; category: "authorization"; risk: "medium"; }' but required in type 'AuditAction'.
+src/compliance/access/AccessControlManager.ts(428,7): error TS2741: Property 'name' is missing in type '{ type: any; id: any; }' but required in type 'AuditResource'.
+src/compliance/access/AccessControlManager.ts(467,7): error TS2741: Property 'name' is missing in type '{ type: "user"; id: any; }' but required in type 'AuditActor'.
+src/compliance/access/AccessControlManager.ts(468,7): error TS2739: Type '{ type: string; category: "authorization"; }' is missing the following properties from type 'AuditAction': description, risk
+src/compliance/access/AccessControlManager.ts(472,7): error TS2741: Property 'name' is missing in type '{ type: string; id: any; }' but required in type 'AuditResource'.
+src/compliance/access/AccessControlManager.ts(543,11): error TS2741: Property 'name' is missing in type '{ type: "user"; id: string; }' but required in type 'AuditActor'.
+src/compliance/access/AccessControlManager.ts(544,11): error TS2739: Type '{ type: string; category: "data_access"; }' is missing the following properties from type 'AuditAction': description, risk
+src/compliance/access/AccessControlManager.ts(545,11): error TS2741: Property 'name' is missing in type '{ type: string; id: string; }' but required in type 'AuditResource'.
+src/compliance/access/AccessControlManager.ts(918,7): error TS2322: Type 'AuditAction | { type: string; category: "unknown"; description: string; risk: "low"; }' is not assignable to type 'AuditAction'.
+  Type '{ type: string; category: "unknown"; description: string; risk: "low"; }' is not assignable to type 'AuditAction'.
+    Types of property 'category' are incompatible.
+      Type '"unknown"' is not assignable to type '"compliance" | "authentication" | "configuration" | "authorization" | "data_access" | "data_modification"'.
+src/compliance/core/ComplianceManager.ts(24,29): error TS2307: Cannot find module '../utils/AuditLogger' or its corresponding type declarations.
+src/compliance/core/ComplianceManager.ts(25,33): error TS2307: Cannot find module '../utils/ComplianceCache' or its corresponding type declarations.
+src/compliance/core/ComplianceManager.ts(26,34): error TS2307: Cannot find module '../utils/MetricsCollector' or its corresponding type declarations.
+src/compliance/core/ComplianceManager.ts(699,17): error TS2393: Duplicate function implementation.
+src/compliance/core/ComplianceManager.ts(933,44): error TS2551: Property 'processDataSubjectRequest' does not exist on type 'PrivacyManager'. Did you mean 'processDataRequest'?
+src/compliance/core/ComplianceManager.ts(946,16): error TS2393: Duplicate function implementation.
+src/compliance/governance/DataGovernanceManager.ts(23,38): error TS2307: Cannot find module './ClassificationEngine' or its corresponding type declarations.
+src/compliance/governance/DataGovernanceManager.ts(24,32): error TS2307: Cannot find module './LineageTracker' or its corresponding type declarations.
+src/compliance/governance/DataGovernanceManager.ts(25,32): error TS2307: Cannot find module './QualityMonitor' or its corresponding type declarations.
+src/compliance/governance/DataGovernanceManager.ts(26,32): error TS2307: Cannot find module './CatalogManager' or its corresponding type declarations.
+src/compliance/governance/DataGovernanceManager.ts(27,40): error TS2307: Cannot find module './StewardshipCoordinator' or its corresponding type declarations.
+src/compliance/governance/DataGovernanceManager.ts(28,33): error TS2307: Cannot find module '../utils/GovernanceCache' or its corresponding type declarations.
+src/compliance/index.ts(64,14): error TS2304: Cannot find name 'ComplianceManager'.
+src/compliance/index.ts(86,54): error TS2304: Cannot find name 'ComplianceManager'.
+src/compliance/index.ts(108,52): error TS2304: Cannot find name 'ComplianceManager'.
+src/compliance/index.ts(144,12): error TS2304: Cannot find name 'ComplianceManager'.
+src/compliance/index.ts(182,12): error TS2304: Cannot find name 'ComplianceManager'.
+src/compliance/index.ts(215,47): error TS2304: Cannot find name 'ComplianceManager'.
+src/compliance/index.ts(259,59): error TS2304: Cannot find name 'ComplianceManager'.
+src/compliance/index.ts(311,31): error TS2304: Cannot find name 'ComplianceManager'.
+src/compliance/index.ts(313,48): error TS2304: Cannot find name 'ComplianceManager'.
+src/compliance/monitoring/ComplianceMonitor.ts(18,35): error TS2307: Cannot find module './ViolationDetector' or its corresponding type declarations.
+src/compliance/monitoring/ComplianceMonitor.ts(19,30): error TS2307: Cannot find module './RiskAssessor' or its corresponding type declarations.
+src/compliance/monitoring/ComplianceMonitor.ts(20,34): error TS2307: Cannot find module './ComplianceScorer' or its corresponding type declarations.
+src/compliance/monitoring/ComplianceMonitor.ts(21,30): error TS2307: Cannot find module './AlertManager' or its corresponding type declarations.
+src/compliance/monitoring/ComplianceMonitor.ts(22,33): error TS2307: Cannot find module './ReportGenerator' or its corresponding type declarations.
+src/compliance/monitoring/ComplianceMonitor.ts(23,36): error TS2307: Cannot find module '../utils/ComplianceDatabase' or its corresponding type declarations.
+src/compliance/monitoring/ComplianceMonitor.ts(24,34): error TS2307: Cannot find module '../utils/MetricsCollector' or its corresponding type declarations.
+src/compliance/monitoring/ComplianceMonitor.ts(1034,9): error TS2365: Operator '>' cannot be applied to types 'unknown' and 'number'.
+src/compliance/privacy/PrivacyManager.ts(19,32): error TS2307: Cannot find module './ConsentManager' or its corresponding type declarations.
+src/compliance/privacy/PrivacyManager.ts(20,34): error TS2307: Cannot find module './RetentionManager' or its corresponding type declarations.
+src/compliance/privacy/PrivacyManager.ts(21,31): error TS2307: Cannot find module './DataMinimizer' or its corresponding type declarations.
+src/compliance/privacy/PrivacyManager.ts(22,33): error TS2307: Cannot find module './RightsProcessor' or its corresponding type declarations.
+src/compliance/privacy/PrivacyManager.ts(23,30): error TS2307: Cannot find module '../utils/PrivacyCache' or its corresponding type declarations.
+src/compliance/privacy/PrivacyManager.ts(278,20): error TS2551: Property 'deleteUserData' does not exist on type 'PrivacyManager'. Did you mean 'deleteData'?
+src/compliance/privacy/PrivacyManager.ts(284,20): error TS2551: Property 'anonymizeUserData' does not exist on type 'PrivacyManager'. Did you mean 'anonymizeData'?
+src/compliance/privacy/PrivacyManager.ts(609,30): error TS2339: Property 'data' does not exist on type 'ComplianceEvent'.
+src/compliance/privacy/PrivacyManager.ts(646,27): error TS2339: Property 'data' does not exist on type 'ComplianceEvent'.
+src/compliance/privacy/PrivacyManager.ts(686,27): error TS2339: Property 'data' does not exist on type 'ComplianceEvent'.
+src/compliance/regulatory/RegulatoryEngine.ts(18,32): error TS2307: Cannot find module './regulations/GDPRCompliance' or its corresponding type declarations.
+src/compliance/regulatory/RegulatoryEngine.ts(19,33): error TS2307: Cannot find module './regulations/HIPAACompliance' or its corresponding type declarations.
+src/compliance/regulatory/RegulatoryEngine.ts(20,32): error TS2307: Cannot find module './regulations/CCPACompliance' or its corresponding type declarations.
+src/compliance/regulatory/RegulatoryEngine.ts(21,32): error TS2307: Cannot find module './regulations/SOC2Compliance' or its corresponding type declarations.
+src/compliance/regulatory/RegulatoryEngine.ts(22,36): error TS2307: Cannot find module './regulations/ISO27001Compliance' or its corresponding type declarations.
+src/compliance/regulatory/RegulatoryEngine.ts(23,36): error TS2307: Cannot find module './ComplianceAssessor' or its corresponding type declarations.
+src/compliance/regulatory/RegulatoryEngine.ts(24,35): error TS2307: Cannot find module './EvidenceCollector' or its corresponding type declarations.
+src/compliance/regulatory/RegulatoryEngine.ts(25,36): error TS2307: Cannot find module './RemediationPlanner' or its corresponding type declarations.
+src/compliance/regulatory/RegulatoryEngine.ts(26,33): error TS2307: Cannot find module '../utils/RegulatoryCache' or its corresponding type declarations.
+src/compliance/security/SecurityManager.ts(23,35): error TS2307: Cannot find module './EncryptionService' or its corresponding type declarations.
+src/compliance/security/SecurityManager.ts(24,26): error TS2307: Cannot find module './KeyVault' or its corresponding type declarations.
+src/compliance/security/SecurityManager.ts(25,32): error TS2307: Cannot find module './NetworkMonitor' or its corresponding type declarations.
+src/compliance/security/SecurityManager.ts(26,38): error TS2307: Cannot find module './VulnerabilityScanner' or its corresponding type declarations.
+src/compliance/security/SecurityManager.ts(27,33): error TS2307: Cannot find module './IncidentHandler' or its corresponding type declarations.
+src/compliance/security/SecurityManager.ts(28,31): error TS2307: Cannot find module '../utils/SecurityCache' or its corresponding type declarations.
+src/compliance/security/SecurityManager.ts(518,55): error TS2339: Property 'automated' does not exist on type 'PlaybookStep'.
+src/compliance/security/SecurityManager.ts(861,31): error TS2339: Property 'assignedTo' does not exist on type 'SecurityIncident'.
+src/compliance/security/SecurityManager.ts(908,30): error TS2339: Property 'data' does not exist on type 'ComplianceEvent'.
+src/compliance/security/SecurityManager.ts(950,19): error TS2339: Property 'data' does not exist on type 'ComplianceEvent'.
+src/compliance/security/SecurityManager.ts(954,30): error TS2339: Property 'data' does not exist on type 'ComplianceEvent'.
+src/contexts/auth-context.tsx(3,8): error TS1259: Module '"/home/darren/ioc-workspace/node_modules/@types/react/index"' can only be default-imported using the 'allowSyntheticDefaultImports' flag
+src/contexts/auth-context.tsx(88,5): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/contexts/ceo-auth-context.tsx(96,5): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/contexts/index.ts(2,15): error TS6142: Module './auth-context' was resolved to '/home/darren/ioc-workspace/libs/shared/data-access/src/contexts/auth-context.tsx', but '--jsx' is not set.
+src/contexts/index.ts(3,15): error TS6142: Module './ceo-auth-context' was resolved to '/home/darren/ioc-workspace/libs/shared/data-access/src/contexts/ceo-auth-context.tsx', but '--jsx' is not set.
+src/contexts/index.ts(4,15): error TS6142: Module './websocket-context' was resolved to '/home/darren/ioc-workspace/libs/shared/data-access/src/contexts/websocket-context.tsx', but '--jsx' is not set.
+src/contexts/websocket-context.tsx(3,8): error TS1259: Module '"/home/darren/ioc-workspace/node_modules/@types/react/index"' can only be default-imported using the 'allowSyntheticDefaultImports' flag
+src/contexts/websocket-context.tsx(80,5): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/index.ts(19,10): error TS2614: Module '"./meta-bi"' has no exported member 'MetaBISystem'. Did you mean to use 'import MetaBISystem from "./meta-bi"' instead?
+src/meta-bi/analytics-db.ts(4,34): error TS2307: Cannot find module 'pg' or its corresponding type declarations.
+src/meta-bi/analytics-operations.ts(4,34): error TS2307: Cannot find module 'pg' or its corresponding type declarations.
+src/meta-bi/analytics-operations.ts(157,7): error TS2322: Type 'Date' is not assignable to type 'string'.
+src/meta-bi/analytics-operations.ts(188,9): error TS2322: Type 'Date' is not assignable to type 'string'.
+src/meta-bi/analytics-operations.ts(204,9): error TS2322: Type 'Date' is not assignable to type 'string'.
+src/meta-bi/analytics-query-interface.ts(4,34): error TS2307: Cannot find module 'pg' or its corresponding type declarations.
+src/meta-bi/analytics.ts(4,34): error TS2307: Cannot find module 'pg' or its corresponding type declarations.
+src/meta-bi/analytics.ts(369,9): error TS2739: Type 'Record<string, TraitDistribution>' is missing the following properties from type '{ openness: TraitDistribution; conscientiousness: TraitDistribution; extraversion: TraitDistribution; agreeableness: TraitDistribution; neuroticism: TraitDistribution; }': openness, conscientiousness, extraversion, agreeableness, neuroticism
+src/meta-bi/anonymization-engine.ts(6,34): error TS2307: Cannot find module 'pg' or its corresponding type declarations.
+src/meta-bi/anonymization-engine.ts(303,57): error TS2339: Property 'role' does not exist on type 'User'.
+src/meta-bi/anonymization-engine.ts(305,63): error TS2339: Property 'timezone' does not exist on type 'User'.
+src/meta-bi/anonymization-engine.ts(306,43): error TS2339: Property 'preferred_language' does not exist on type 'User'.
+src/meta-bi/anonymization-engine.ts(362,58): error TS2339: Property 'employee_count' does not exist on type 'Organization'.
+src/meta-bi/anonymization-engine.ts(363,61): error TS2339: Property 'country' does not exist on type 'Organization'.
+src/meta-bi/anonymization-engine.ts(367,56): error TS2339: Property 'plan' does not exist on type 'Organization'.
+src/meta-bi/anonymization-engine.ts(368,58): error TS2339: Property 'features' does not exist on type 'Organization'.
+src/meta-bi/anonymization-engine.ts(416,44): error TS2339: Property 'question_count' does not exist on type 'Assessment'.
+src/meta-bi/anonymization-engine.ts(469,49): error TS2339: Property 'completion_percentage' does not exist on type 'AssessmentResponse'.
+src/meta-bi/anonymization-engine.ts(470,65): error TS2339: Property 'device_info' does not exist on type 'AssessmentResponse'.
+src/meta-bi/anonymization-engine.ts(471,65): error TS2339: Property 'device_info' does not exist on type 'AssessmentResponse'.
+src/meta-bi/anonymization-engine.ts(472,70): error TS2339: Property 'geo_info' does not exist on type 'AssessmentResponse'.
+src/meta-bi/anonymization-engine.ts(472,98): error TS2339: Property 'geo_info' does not exist on type 'AssessmentResponse'.
+src/meta-bi/anonymization-engine.ts(473,60): error TS2339: Property 'geo_info' does not exist on type 'AssessmentResponse'.
+src/meta-bi/anonymization-engine.ts(476,26): error TS2339: Property 'responses' does not exist on type 'AssessmentResponse'.
+src/meta-bi/anonymization-engine.ts(476,62): error TS2339: Property 'responses' does not exist on type 'AssessmentResponse'.
+src/meta-bi/anonymization-engine.ts(477,85): error TS2339: Property 'responses' does not exist on type 'AssessmentResponse'.
+src/meta-bi/anonymization-engine.ts(659,18): error TS2339: Property 'timezone' does not exist on type 'User'.
+src/meta-bi/anonymization-engine.ts(660,55): error TS2339: Property 'timezone' does not exist on type 'User'.
+src/meta-bi/anonymization-engine.ts(662,18): error TS2339: Property 'preferred_language' does not exist on type 'User'.
+src/meta-bi/anonymization-engine.ts(663,31): error TS2339: Property 'preferred_language' does not exist on type 'User'.
+src/meta-bi/anonymization-pipeline.ts(9,22): error TS2307: Cannot find module 'pg' or its corresponding type declarations.
+src/meta-bi/anonymization-pipeline.ts(229,26): error TS2339: Property 'requestId' does not exist on type '{ anonymizedAt: string; method: string; version: string; complianceFlags: string[]; dataQuality: number; riskScore: number; }'.
+src/meta-bi/anonymization-pipeline.ts(284,41): error TS2554: Expected 1 arguments, but got 0.
+src/meta-bi/anonymization-pipeline.ts(387,9): error TS2353: Object literal may only specify known properties, and 'requestId' does not exist in type '{ anonymizedAt: string; method: string; version: string; complianceFlags: string[]; dataQuality: number; riskScore: number; }'.
+src/meta-bi/anonymization-pipeline.ts(396,79): error TS2339: Property 'processedAt' does not exist on type '{ anonymizedAt: string; method: string; version: string; complianceFlags: string[]; dataQuality: number; riskScore: number; }'.
+src/meta-bi/anonymization-system.ts(5,22): error TS2307: Cannot find module 'pg' or its corresponding type declarations.
+src/meta-bi/anonymization-system.ts(534,7): error TS2345: Argument of type '{ id: string; anonymizedData: {}; metadata: { anonymizedAt: string; method: string; version: string; complianceFlags: any[]; dataQuality: number; riskScore: number; }; }' is not assignable to parameter of type 'AnonymizedData'.
+  Property 'originalDataHash' is missing in type '{ id: string; anonymizedData: {}; metadata: { anonymizedAt: string; method: string; version: string; complianceFlags: any[]; dataQuality: number; riskScore: number; }; }' but required in type 'AnonymizedData'.
+src/meta-bi/anonymization.ts(4,8): error TS1192: Module '"crypto"' has no default export.
+src/meta-bi/architecture.ts(994,3): error TS2322: Type '{ scaling: { horizontalScaling: { enabled: boolean; minInstances: number; maxInstances: number; targetCPU: number; targetMemory: number; scaleUpCooldown: number; scaleDownCooldown: number; }; }; } | { ...; } | { ...; } | { ...; }' is not assignable to type 'Partial<MetaBIArchitecture>'.
+  Type '{ scaling: { horizontalScaling: { enabled: boolean; minInstances: number; maxInstances: number; targetCPU: number; targetMemory: number; scaleUpCooldown: number; scaleDownCooldown: number; }; }; }' is not assignable to type 'Partial<MetaBIArchitecture>'.
+    Types of property 'scaling' are incompatible.
+      Type '{ horizontalScaling: { enabled: boolean; minInstances: number; maxInstances: number; targetCPU: number; targetMemory: number; scaleUpCooldown: number; scaleDownCooldown: number; }; }' is missing the following properties from type 'ScalingConfiguration': verticalScaling, dataPartitioning
+src/meta-bi/audit-logger.ts(6,22): error TS2307: Cannot find module 'pg' or its corresponding type declarations.
+src/meta-bi/batch-processor.ts(8,22): error TS2307: Cannot find module 'pg' or its corresponding type declarations.
+src/meta-bi/batch-processor.ts(469,44): error TS2339: Property 'config' does not exist on type 'Readable'.
+src/meta-bi/batch-processor.ts(514,41): error TS2339: Property 'shouldStop' does not exist on type 'Transform'.
+src/meta-bi/batch-processor.ts(519,20): error TS2339: Property 'shouldStop' does not exist on type 'Transform'.
+src/meta-bi/batch-processor.ts(529,39): error TS2339: Property 'processBatch' does not exist on type 'Transform'.
+src/meta-bi/batch-processor.ts(533,46): error TS2339: Property 'config' does not exist on type 'Transform'.
+src/meta-bi/batch-processor.ts(535,20): error TS2339: Property 'processBatchResults' does not exist on type 'Transform'.
+src/meta-bi/batch-processor.ts(551,39): error TS2339: Property 'processBatch' does not exist on type 'Transform'.
+src/meta-bi/batch-processor.ts(558,18): error TS2339: Property 'processBatchResults' does not exist on type 'Transform'.
+src/meta-bi/batch-processor.ts(748,24): error TS2339: Property 'config' does not exist on type 'Writable'.
+src/meta-bi/batch-processor.ts(778,18): error TS2339: Property 'config' does not exist on type 'Writable'.
+src/meta-bi/batch-processor.ts(802,24): error TS2339: Property 'writeBatchToDatabase' does not exist on type 'Writable'.
+src/meta-bi/batch-processor.ts(815,24): error TS2339: Property 'writeBatchToDatabase' does not exist on type 'Writable'.
+src/meta-bi/compliance-validator.ts(5,22): error TS2307: Cannot find module 'pg' or its corresponding type declarations.
+src/meta-bi/database-management.ts(4,34): error TS2307: Cannot find module 'pg' or its corresponding type declarations.
+src/meta-bi/deployment.ts(6,3): error TS2305: Module '"./types"' has no exported member 'AnalyticsDBConfig'.
+src/meta-bi/deployment.ts(7,3): error TS2305: Module '"./types"' has no exported member 'StreamProcessorConfig'.
+src/meta-bi/deployment.ts(8,3): error TS2305: Module '"./types"' has no exported member 'BatchProcessorConfig'.
+src/meta-bi/deployment.ts(9,3): error TS2305: Module '"./types"' has no exported member 'AnalyticsEngineConfig'.
+src/meta-bi/deployment.ts(10,3): error TS2305: Module '"./types"' has no exported member 'MonitoringConfig'.
+src/meta-bi/deployment.ts(11,3): error TS2305: Module '"./types"' has no exported member 'SecurityConfig'.
+src/meta-bi/deployment.ts(15,3): error TS2724: '"./index"' has no exported member named 'createDefaultStreamConfig'. Did you mean 'createDefaultSystemConfig'?
+src/meta-bi/deployment.ts(19,3): error TS2724: '"./index"' has no exported member named 'createDefaultSecurityConfig'. Did you mean 'createDefaultETLConfig'?
+src/meta-bi/deployment.ts(716,11): error TS2393: Duplicate function implementation.
+src/meta-bi/deployment.ts(937,11): error TS2393: Duplicate function implementation.
+src/meta-bi/etl-pipeline.ts(286,9): error TS2739: Type '{ primaryConnection: string; analyticsConnection: string; }' is missing the following properties from type '{ primaryConnection: string; analyticsConnection: string; enableSeparateAnalyticsDB: boolean; connectionPoolSize: number; }': enableSeparateAnalyticsDB, connectionPoolSize
+src/meta-bi/etl-pipeline.ts(293,13): error TS2353: Object literal may only specify known properties, and 'enableKAnonymity' does not exist in type '{ mode: "GDPR" | "HIPAA" | "CCPA" | "STRICT"; kAnonymity: number; lDiversity: number; tCloseness: number; enableDifferentialPrivacy: boolean; epsilonValue: number; }'.
+src/meta-bi/etl-pipeline.ts(306,13): error TS2353: Object literal may only specify known properties, and 'enableGeographicGeneralization' does not exist in type '{ ipToRegion: boolean; cityToCountry: boolean; timezoneGeneralization: boolean; postalCodeGeneralization: number; }'.
+src/meta-bi/etl-pipeline.ts(311,13): error TS2322: Type '"month" | "year"' is not assignable to type '"day" | "week" | "month"'.
+  Type '"year"' is not assignable to type '"day" | "week" | "month"'.
+src/meta-bi/etl-pipeline.ts(314,9): error TS2741: Property 'autoRemediation' is missing in type '{ enabledRegulations: string[]; strictMode: boolean; }' but required in type '{ enabledRegulations: string[]; strictMode: boolean; autoRemediation: boolean; alertWebhookUrl?: string; }'.
+src/meta-bi/etl-pipeline.ts(319,11): error TS2353: Object literal may only specify known properties, and 'enableQualityAssurance' does not exist in type '{ enableRealTimeValidation: boolean; qualityThreshold: number; riskThreshold: number; sampleRate: number; }'.
+src/meta-bi/etl-pipeline.ts(328,50): error TS2345: Argument of type '{ name: string; version: string; stream: { batchSize: number; batchTimeoutMs: number; maxConcurrentProcessors: number; bufferSize: number; backpressureThreshold: number; enableCheckpointing: true; checkpointIntervalMs: number; }; processing: { ...; }; integration: { ...; }; }' is not assignable to parameter of type 'StreamProcessingConfig'.
+  Type '{ name: string; version: string; stream: { batchSize: number; batchTimeoutMs: number; maxConcurrentProcessors: number; bufferSize: number; backpressureThreshold: number; enableCheckpointing: true; checkpointIntervalMs: number; }; processing: { ...; }; integration: { ...; }; }' is missing the following properties from type 'StreamProcessingConfig': quality, monitoring, errorHandling
+src/meta-bi/etl-pipeline.ts(369,9): error TS2741: Property 'includeTransactionMetadata' is missing in type '{ replicationSlot: string; publicationName: string; tables: string[]; excludedTables: undefined[]; enabledOperations: ("DELETE" | "INSERT" | "UPDATE")[]; maxBatchSize: number; pollingIntervalMs: number; }' but required in type '{ replicationSlot: string; publicationName: string; tables: string[]; excludedTables: string[]; enabledOperations: ("DELETE" | "INSERT" | "UPDATE")[]; startLSN?: string; includeTransactionMetadata: boolean; maxBatchSize: number; pollingIntervalMs: number; }'.
+src/meta-bi/etl-pipeline.ts(742,45): error TS2339: Property 'anonymizedData' does not exist on type 'string'.
+src/meta-bi/etl-pipeline.ts(777,16): error TS2538: Type 'unknown' cannot be used as an index type.
+src/meta-bi/index.ts(124,3): error TS2724: '"./anonymization-system"' has no exported member named 'AnonymizationConfig'. Did you mean 'AnonymizationSystemConfig'?
+src/meta-bi/index.ts(125,3): error TS2305: Module '"./anonymization-system"' has no exported member 'AnonymizedData'.
+src/meta-bi/index.ts(126,3): error TS2305: Module '"./anonymization-system"' has no exported member 'ReIdentificationRisk'.
+src/meta-bi/index.ts(129,3): error TS2459: Module '"./anonymization-system"' declares 'PipelineConfig' locally, but it is not exported.
+src/meta-bi/index.ts(130,3): error TS2305: Module '"./anonymization-system"' has no exported member 'ProcessingMetrics'.
+src/meta-bi/index.ts(133,3): error TS2305: Module '"./anonymization-system"' has no exported member 'ComplianceReport'.
+src/meta-bi/index.ts(134,3): error TS2305: Module '"./anonymization-system"' has no exported member 'ComplianceViolation'.
+src/meta-bi/index.ts(135,3): error TS2459: Module '"./anonymization-system"' declares 'ValidationContext' locally, but it is not exported.
+src/meta-bi/index.ts(138,3): error TS2305: Module '"./anonymization-system"' has no exported member 'QualityMetrics'.
+src/meta-bi/index.ts(139,3): error TS2305: Module '"./anonymization-system"' has no exported member 'QualityAssessment'.
+src/meta-bi/index.ts(140,3): error TS2305: Module '"./anonymization-system"' has no exported member 'QualityIssue'.
+src/meta-bi/index.ts(143,3): error TS2459: Module '"./anonymization-system"' declares 'BatchJobConfig' locally, but it is not exported.
+src/meta-bi/index.ts(144,3): error TS2305: Module '"./anonymization-system"' has no exported member 'BatchJobStatus'.
+src/meta-bi/index.ts(145,3): error TS2305: Module '"./anonymization-system"' has no exported member 'BatchJobResult'.
+src/meta-bi/index.ts(148,3): error TS2305: Module '"./anonymization-system"' has no exported member 'AuditEvent'.
+src/meta-bi/index.ts(149,3): error TS2305: Module '"./anonymization-system"' has no exported member 'AuditReport'.
+src/meta-bi/index.ts(174,5): error TS2304: Cannot find name 'AnonymizationSystem'.
+src/meta-bi/index.ts(175,18): error TS2304: Cannot find name 'createDefaultSystemConfig'.
+src/meta-bi/index.ts(197,14): error TS2304: Cannot find name 'AnonymizationSystem'.
+src/meta-bi/index.ts(206,10): error TS2304: Cannot find name 'AnonymizationSystem'.
+src/meta-bi/index.ts(207,18): error TS2304: Cannot find name 'createDefaultSystemConfig'.
+src/meta-bi/index.ts(224,14): error TS2304: Cannot find name 'AnonymizationSystem'.
+src/meta-bi/index.ts(237,5): error TS2304: Cannot find name 'AnonymizationSystem'.
+src/meta-bi/index.ts(238,18): error TS2304: Cannot find name 'createDefaultSystemConfig'.
+src/meta-bi/index.ts(257,14): error TS2304: Cannot find name 'AnonymizationSystem'.
+src/meta-bi/index.ts(271,5): error TS2304: Cannot find name 'AnonymizationSystem'.
+src/meta-bi/index.ts(272,18): error TS2304: Cannot find name 'createDefaultSystemConfig'.
+src/meta-bi/index.ts(293,14): error TS2304: Cannot find name 'AnonymizationSystem'.
+src/meta-bi/index.ts(405,3): error TS18004: No value exists in scope for the shorthand property 'AnonymizationSystem'. Either declare one or provide an initializer.
+src/meta-bi/index.ts(408,3): error TS18004: No value exists in scope for the shorthand property 'createAnonymizationSystem'. Either declare one or provide an initializer.
+src/meta-bi/index.ts(415,3): error TS18004: No value exists in scope for the shorthand property 'createDefaultSystemConfig'. Either declare one or provide an initializer.
+src/meta-bi/index.ts(416,3): error TS18004: No value exists in scope for the shorthand property 'createDefaultPipelineConfig'. Either declare one or provide an initializer.
+src/meta-bi/index.ts(417,3): error TS18004: No value exists in scope for the shorthand property 'createDefaultBatchConfig'. Either declare one or provide an initializer.
+src/meta-bi/quality-assurance.ts(5,22): error TS2307: Cannot find module 'pg' or its corresponding type declarations.
+src/meta-bi/quality-assurance.ts(919,9): error TS2322: Type '"IMPROVING" | "STABLE" | "DECLINING"' is not assignable to type '"STABLE" | "INCREASING" | "DECREASING"'.
+  Type '"IMPROVING"' is not assignable to type '"STABLE" | "INCREASING" | "DECREASING"'.
+src/meta-bi/realtime-index.ts(84,3): error TS2724: '"./anonymization-system"' has no exported member named 'createProductionAnonymizationSystem'. Did you mean 'createAnonymizationSystem'?
+src/meta-bi/realtime-index.ts(85,3): error TS2724: '"./anonymization-system"' has no exported member named 'createDevelopmentAnonymizationSystem'. Did you mean 'createAnonymizationSystem'?
+src/meta-bi/realtime-index.ts(86,3): error TS2724: '"./anonymization-system"' has no exported member named 'createHIPAAAnonymizationSystem'. Did you mean 'createAnonymizationSystem'?
+src/meta-bi/realtime-index.ts(87,3): error TS2724: '"./anonymization-system"' has no exported member named 'createGDPRAnonymizationSystem'. Did you mean 'createAnonymizationSystem'?
+src/meta-bi/realtime-index.ts(120,26): error TS2304: Cannot find name 'RealTimeProcessingConfig'.
+src/meta-bi/realtime-index.ts(121,5): error TS2304: Cannot find name 'RealTimeProcessingSystem'.
+src/meta-bi/realtime-index.ts(123,18): error TS2304: Cannot find name 'createDefaultRealTimeProcessingConfig'.
+src/meta-bi/realtime-index.ts(177,14): error TS2304: Cannot find name 'RealTimeProcessingSystem'.
+src/meta-bi/realtime-index.ts(189,10): error TS2304: Cannot find name 'RealTimeProcessingSystem'.
+src/meta-bi/realtime-index.ts(191,18): error TS2304: Cannot find name 'createDefaultRealTimeProcessingConfig'.
+src/meta-bi/realtime-index.ts(217,14): error TS2304: Cannot find name 'RealTimeProcessingSystem'.
+src/meta-bi/realtime-index.ts(230,5): error TS2304: Cannot find name 'RealTimeProcessingSystem'.
+src/meta-bi/realtime-index.ts(232,18): error TS2304: Cannot find name 'createDefaultRealTimeProcessingConfig'.
+src/meta-bi/realtime-index.ts(260,14): error TS2304: Cannot find name 'RealTimeProcessingSystem'.
+src/meta-bi/realtime-index.ts(273,5): error TS2304: Cannot find name 'RealTimeProcessingSystem'.
+src/meta-bi/realtime-index.ts(275,18): error TS2304: Cannot find name 'createDefaultRealTimeProcessingConfig'.
+src/meta-bi/realtime-index.ts(304,14): error TS2304: Cannot find name 'RealTimeProcessingSystem'.
+src/meta-bi/realtime-index.ts(318,5): error TS2304: Cannot find name 'RealTimeProcessingSystem'.
+src/meta-bi/realtime-index.ts(320,18): error TS2304: Cannot find name 'createDefaultRealTimeProcessingConfig'.
+src/meta-bi/realtime-index.ts(350,14): error TS2304: Cannot find name 'RealTimeProcessingSystem'.
+src/meta-bi/realtime-index.ts(360,40): error TS2304: Cannot find name 'RealTimeProcessingSystem'.
+src/meta-bi/realtime-index.ts(363,14): error TS2304: Cannot find name 'ProcessingStats'.
+src/meta-bi/realtime-index.ts(413,47): error TS2304: Cannot find name 'ProcessingStats'.
+src/meta-bi/realtime-index.ts(438,40): error TS2304: Cannot find name 'RealTimeProcessingConfig'.
+src/meta-bi/realtime-index.ts(505,3): error TS18004: No value exists in scope for the shorthand property 'RealTimeProcessingSystem'. Either declare one or provide an initializer.
+src/meta-bi/realtime-processing.ts(215,10): error TS2339: Property 'setupMonitoring' does not exist on type 'RealTimeProcessingSystem'.
+src/meta-bi/realtime-processing.ts(268,9): error TS2739: Type '{ primaryConnection: string; analyticsConnection: string; }' is missing the following properties from type '{ primaryConnection: string; analyticsConnection: string; enableSeparateAnalyticsDB: boolean; connectionPoolSize: number; }': enableSeparateAnalyticsDB, connectionPoolSize
+src/meta-bi/realtime-processing.ts(275,13): error TS2353: Object literal may only specify known properties, and 'enableKAnonymity' does not exist in type '{ mode: "GDPR" | "HIPAA" | "CCPA" | "STRICT"; kAnonymity: number; lDiversity: number; tCloseness: number; enableDifferentialPrivacy: boolean; epsilonValue: number; }'.
+src/meta-bi/realtime-processing.ts(281,9): error TS2741: Property 'autoRemediation' is missing in type '{ enabledRegulations: string[]; strictMode: boolean; }' but required in type '{ enabledRegulations: string[]; strictMode: boolean; autoRemediation: boolean; alertWebhookUrl?: string; }'.
+src/meta-bi/realtime-processing.ts(286,11): error TS2353: Object literal may only specify known properties, and 'enableQualityAssurance' does not exist in type '{ enableRealTimeValidation: boolean; qualityThreshold: number; riskThreshold: number; sampleRate: number; }'.
+src/meta-bi/security.ts(4,8): error TS1192: Module '"crypto"' has no default export.
+src/meta-bi/stream-processing.ts(176,9): error TS2739: Type '{ primaryConnection: string; analyticsConnection: string; }' is missing the following properties from type '{ primaryConnection: string; analyticsConnection: string; enableSeparateAnalyticsDB: boolean; connectionPoolSize: number; }': enableSeparateAnalyticsDB, connectionPoolSize
+src/meta-bi/stream-processing.ts(183,13): error TS2353: Object literal may only specify known properties, and 'enableKAnonymity' does not exist in type '{ mode: "GDPR" | "HIPAA" | "CCPA" | "STRICT"; kAnonymity: number; lDiversity: number; tCloseness: number; enableDifferentialPrivacy: boolean; epsilonValue: number; }'.
+src/meta-bi/stream-processing.ts(199,13): error TS2353: Object literal may only specify known properties, and 'enableGeographicGeneralization' does not exist in type '{ ipToRegion: boolean; cityToCountry: boolean; timezoneGeneralization: boolean; postalCodeGeneralization: number; }'.
+src/meta-bi/stream-processing.ts(206,13): error TS2353: Object literal may only specify known properties, and 'enableTemporalGeneralization' does not exist in type '{ dateGranularity: "day" | "week" | "month"; timeRounding: number; ageGeneralization: number; }'.
+src/meta-bi/stream-processing.ts(213,13): error TS2353: Object literal may only specify known properties, and 'originalDataDays' does not exist in type '{ anonymizedDataDays: number; auditLogDays: number; qualityMetricsDays: number; }'.
+src/meta-bi/stream-processing.ts(220,11): error TS2353: Object literal may only specify known properties, and 'automaticComplianceValidation' does not exist in type '{ enabledRegulations: string[]; strictMode: boolean; autoRemediation: boolean; alertWebhookUrl?: string; }'.
+src/meta-bi/stream-processing.ts(227,11): error TS2353: Object literal may only specify known properties, and 'enableQualityAssurance' does not exist in type '{ enableRealTimeValidation: boolean; qualityThreshold: number; riskThreshold: number; sampleRate: number; }'.
+src/meta-bi/stream-processing.ts(235,11): error TS2353: Object literal may only specify known properties, and 'enableAuditLogging' does not exist in type '{ enableComprehensiveLogging: boolean; retentionPeriod: number; encryptSensitiveData: boolean; realTimeAlerts: boolean; }'.
+src/meta-bi/stream-processing.ts(244,11): error TS2353: Object literal may only specify known properties, and 'batchSize' does not exist in type '{ enablePerformanceMonitoring: boolean; maxConcurrentJobs: number; memoryThreshold: number; cpuThreshold: number; }'.
+src/meta-bi/stream-processing.ts(254,59): error TS2341: Property 'complianceValidator' is private and only accessible within class 'AnonymizationSystem'.
+src/meta-bi/stream-processing.ts(258,51): error TS2341: Property 'auditLogger' is private and only accessible within class 'AnonymizationSystem'.
+src/meta-bi/stream-processing.ts(302,30): error TS2554: Expected 4-5 arguments, but got 1.
+src/meta-bi/stream-processing.ts(369,32): error TS2554: Expected 4-5 arguments, but got 1.
+src/meta-bi/stream-processing.ts(432,56): error TS2339: Property 'assessData' does not exist on type 'QualityAssuranceEngine'.
+src/meta-bi/stream-processing.ts(450,45): error TS2339: Property 'anonymizedData' does not exist on type 'string'.
+src/meta-bi/stream-processing.ts(455,65): error TS2339: Property 'validateData' does not exist on type 'ComplianceValidator'.
+src/performance/analyze-bundles.ts(7,8): error TS1192: Module '"fs"' has no default export.
+src/performance/analyze-bundles.ts(8,8): error TS1259: Module '"path"' can only be default-imported using the 'allowSyntheticDefaultImports' flag
+src/performance/performance-baseline.ts(7,8): error TS1192: Module '"fs"' has no default export.
+src/performance/performance-baseline.ts(8,8): error TS1259: Module '"path"' can only be default-imported using the 'allowSyntheticDefaultImports' flag
+src/scoring/ocean-dark-side-mapping.ts(692,42): error TS2339: Property 'neuroticism' does not exist on type 'OceanScore'.
+src/scoring/ocean-dark-side-mapping.ts(693,37): error TS2339: Property 'conscientiousness' does not exist on type 'OceanScore'.
+src/scoring/ocean-dark-side-mapping.ts(694,28): error TS2339: Property 'openness' does not exist on type 'OceanScore'.
+src/scoring/ocean-dark-side-mapping.ts(702,42): error TS2339: Property 'neuroticism' does not exist on type 'OceanScore'.
+src/scoring/ocean-dark-side-mapping.ts(704,50): error TS2339: Property 'neuroticism' does not exist on type 'OceanScore'.
+src/scoring/ocean-dark-side-mapping.ts(704,80): error TS2339: Property 'agreeableness' does not exist on type 'OceanScore'.
+src/scoring/ocean-dark-side-mapping.ts(706,49): error TS2339: Property 'agreeableness' does not exist on type 'OceanScore'.
+src/scoring/ocean-dark-side-mapping.ts(738,9): error TS2365: Operator '>=' cannot be applied to types 'string | OceanTraits | OceanFacets' and 'number'.
+src/scoring/ocean-dark-side-mapping.ts(740,16): error TS2365: Operator '<=' cannot be applied to types 'string | OceanTraits | OceanFacets' and 'number'.
+src/scoring/ocean-dark-side-mapping.ts(746,20): error TS2365: Operator '>=' cannot be applied to types 'string | OceanTraits | OceanFacets' and 'number'.
+src/scoring/ocean-dark-side-mapping.ts(746,36): error TS2365: Operator '<=' cannot be applied to types 'string | OceanTraits | OceanFacets' and 'number'.
+src/scoring/ocean-dark-side-mapping.ts(747,19): error TS2365: Operator '>=' cannot be applied to types 'string | OceanTraits | OceanFacets' and 'number'.
+src/scoring/ocean-dark-side-mapping.ts(747,35): error TS2365: Operator '<=' cannot be applied to types 'string | OceanTraits | OceanFacets' and 'number'.
+src/scoring/ocean-dark-side-mapping.ts(862,26): error TS2362: The left-hand side of an arithmetic operation must be of type 'any', 'number', 'bigint' or an enum type.
+src/scoring/ocean-dark-side-mapping.ts(862,66): error TS2363: The right-hand side of an arithmetic operation must be of type 'any', 'number', 'bigint' or an enum type.
+src/scoring/ocean-dark-side-mapping.ts(872,37): error TS2339: Property 'neuroticism' does not exist on type 'OceanScore'.
+src/scoring/ocean-dark-side-mapping.ts(872,66): error TS2339: Property 'agreeableness' does not exist on type 'OceanScore'.
+src/scoring/ocean-dark-side-mapping.ts(878,35): error TS2339: Property 'conscientiousness' does not exist on type 'OceanScore'.
+src/scoring/ocean-dark-side-mapping.ts(879,15): error TS2339: Property 'conscientiousness' does not exist on type 'OceanScore'.
+src/scoring/ocean-dark-side-mapping.ts(880,39): error TS2339: Property 'conscientiousness' does not exist on type 'OceanScore'.
+src/scoring/ocean-dark-side-mapping.ts(884,33): error TS2339: Property 'neuroticism' does not exist on type 'OceanScore'.
+src/scoring/ocean-dark-side-mapping.ts(892,15): error TS2339: Property 'neuroticism' does not exist on type 'OceanScore'.
+src/scoring/ocean-dark-side-mapping.ts(892,55): error TS2339: Property 'neuroticism' does not exist on type 'OceanScore'.
+src/scoring/ocean-dark-side-mapping.ts(893,15): error TS2339: Property 'agreeableness' does not exist on type 'OceanScore'.
+src/scoring/ocean-dark-side-mapping.ts(893,63): error TS2339: Property 'agreeableness' does not exist on type 'OceanScore'.
+src/scoring/ocean-dark-side-mapping.ts(894,15): error TS2339: Property 'extraversion' does not exist on type 'OceanScore'.
+src/scoring/ocean-dark-side-mapping.ts(894,58): error TS2339: Property 'extraversion' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(254,5): error TS2353: Object literal may only specify known properties, and 'openness' does not exist in type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(254,26): error TS2339: Property 'openness' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(255,35): error TS2339: Property 'conscientiousness' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(256,30): error TS2339: Property 'extraversion' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(257,31): error TS2339: Property 'agreeableness' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(258,29): error TS2339: Property 'neuroticism' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(262,50): error TS2339: Property 'neuroticism' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(278,25): error TS2554: Expected 2 arguments, but got 1.
+src/scoring/ocean-executive-org-scoring.ts(306,23): error TS2339: Property 'openness' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(309,23): error TS2339: Property 'conscientiousness' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(312,23): error TS2339: Property 'extraversion' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(315,23): error TS2339: Property 'agreeableness' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(358,23): error TS2339: Property 'openness' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(362,23): error TS2339: Property 'conscientiousness' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(366,23): error TS2339: Property 'extraversion' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(372,30): error TS2339: Property 'agreeableness' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(374,25): error TS2339: Property 'agreeableness' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(404,23): error TS2339: Property 'openness' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(407,23): error TS2339: Property 'conscientiousness' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(410,23): error TS2339: Property 'extraversion' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(413,23): error TS2339: Property 'agreeableness' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(435,12): error TS2339: Property 'conscientiousness' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(436,12): error TS2339: Property 'openness' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(437,12): error TS2339: Property 'extraversion' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(452,42): error TS2339: Property 'agreeableness' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(454,21): error TS2339: Property 'extraversion' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(456,21): error TS2339: Property 'agreeableness' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(456,49): error TS2339: Property 'conscientiousness' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(464,14): error TS2339: Property 'conscientiousness' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(467,14): error TS2339: Property 'extraversion' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(470,14): error TS2339: Property 'openness' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(476,14): error TS2339: Property 'agreeableness' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(536,5): error TS2353: Object literal may only specify known properties, and 'openness' does not exist in type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(552,13): error TS2362: The left-hand side of an arithmetic operation must be of type 'any', 'number', 'bigint' or an enum type.
+src/scoring/ocean-executive-org-scoring.ts(557,47): error TS2345: Argument of type '(string | OceanTraits | OceanFacets)[]' is not assignable to parameter of type 'number[]'.
+  Type 'string | OceanTraits | OceanFacets' is not assignable to type 'number'.
+    Type 'string' is not assignable to type 'number'.
+src/scoring/ocean-executive-org-scoring.ts(560,12): error TS2678: Type '"openness"' is not comparable to type 'keyof OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(564,12): error TS2678: Type '"conscientiousness"' is not comparable to type 'keyof OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(568,12): error TS2678: Type '"extraversion"' is not comparable to type 'keyof OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(570,57): error TS2365: Operator '>' cannot be applied to types 'string | OceanTraits | OceanFacets' and 'number'.
+src/scoring/ocean-executive-org-scoring.ts(573,12): error TS2678: Type '"agreeableness"' is not comparable to type 'keyof OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(577,12): error TS2678: Type '"neuroticism"' is not comparable to type 'keyof OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(579,57): error TS2365: Operator '>' cannot be applied to types 'string | OceanTraits | OceanFacets' and 'number'.
+src/scoring/ocean-executive-org-scoring.ts(584,5): error TS2322: Type 'number' is not assignable to type 'OceanTraits & OceanFacets & string'.
+  Type 'number' is not assignable to type 'OceanTraits'.
+src/scoring/ocean-executive-org-scoring.ts(595,5): error TS2353: Object literal may only specify known properties, and 'openness' does not exist in type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(604,5): error TS2322: Type 'number' is not assignable to type 'OceanTraits & OceanFacets & string'.
+  Type 'number' is not assignable to type 'OceanTraits'.
+src/scoring/ocean-executive-org-scoring.ts(604,51): error TS2345: Argument of type '(string | OceanTraits | OceanFacets)[]' is not assignable to parameter of type 'number[]'.
+  Type 'string | OceanTraits | OceanFacets' is not assignable to type 'number'.
+    Type 'string' is not assignable to type 'number'.
+src/scoring/ocean-executive-org-scoring.ts(622,35): error TS2362: The left-hand side of an arithmetic operation must be of type 'any', 'number', 'bigint' or an enum type.
+src/scoring/ocean-executive-org-scoring.ts(645,14): error TS2339: Property 'openness' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(646,17): error TS2339: Property 'openness' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(647,14): error TS2339: Property 'conscientiousness' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(651,14): error TS2339: Property 'agreeableness' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(652,22): error TS2339: Property 'agreeableness' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(653,14): error TS2339: Property 'extraversion' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(657,14): error TS2339: Property 'openness' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(658,17): error TS2339: Property 'extraversion' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(659,19): error TS2339: Property 'neuroticism' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(663,14): error TS2339: Property 'conscientiousness' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(664,22): error TS2339: Property 'conscientiousness' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(665,19): error TS2339: Property 'neuroticism' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(680,14): error TS2339: Property 'agreeableness' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(681,19): error TS2339: Property 'neuroticism' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(682,14): error TS2339: Property 'openness' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(686,14): error TS2339: Property 'openness' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(687,14): error TS2339: Property 'extraversion' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(688,14): error TS2339: Property 'agreeableness' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(692,19): error TS2339: Property 'neuroticism' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(693,14): error TS2339: Property 'openness' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(694,14): error TS2339: Property 'conscientiousness' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(698,14): error TS2339: Property 'conscientiousness' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(699,14): error TS2339: Property 'extraversion' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(700,19): error TS2339: Property 'neuroticism' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(749,33): error TS2362: The left-hand side of an arithmetic operation must be of type 'any', 'number', 'bigint' or an enum type.
+src/scoring/ocean-executive-org-scoring.ts(749,59): error TS2363: The right-hand side of an arithmetic operation must be of type 'any', 'number', 'bigint' or an enum type.
+src/scoring/ocean-executive-org-scoring.ts(791,5): error TS2353: Object literal may only specify known properties, and 'openness' does not exist in type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(803,5): error TS2322: Type 'number' is not assignable to type 'OceanTraits & OceanFacets & string'.
+  Type 'number' is not assignable to type 'OceanTraits'.
+src/scoring/ocean-executive-org-scoring.ts(803,25): error TS2554: Expected 2 arguments, but got 1.
+src/scoring/ocean-executive-org-scoring.ts(836,5): error TS2353: Object literal may only specify known properties, and 'openness' does not exist in type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(845,7): error TS2322: Type 'string' is not assignable to type 'OceanTraits & OceanFacets & string'.
+  Type 'string' is not assignable to type 'OceanTraits'.
+src/scoring/ocean-executive-org-scoring.ts(850,5): error TS2362: The left-hand side of an arithmetic operation must be of type 'any', 'number', 'bigint' or an enum type.
+src/scoring/ocean-executive-org-scoring.ts(862,18): error TS2339: Property 'agreeableness' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(863,18): error TS2339: Property 'extraversion' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(864,22): error TS2339: Property 'agreeableness' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(868,18): error TS2339: Property 'openness' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(869,17): error TS2339: Property 'openness' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(870,18): error TS2339: Property 'extraversion' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(874,18): error TS2339: Property 'conscientiousness' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(875,22): error TS2339: Property 'conscientiousness' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(876,23): error TS2339: Property 'neuroticism' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(880,17): error TS2339: Property 'agreeableness' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(881,18): error TS2339: Property 'neuroticism' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(882,23): error TS2339: Property 'agreeableness' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(893,5): error TS2353: Object literal may only specify known properties, and 'openness' does not exist in type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(901,19): error TS2339: Property 'openness' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(901,43): error TS2339: Property 'openness' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(902,19): error TS2339: Property 'conscientiousness' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(902,52): error TS2339: Property 'conscientiousness' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(903,19): error TS2339: Property 'extraversion' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(903,47): error TS2339: Property 'extraversion' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(904,19): error TS2339: Property 'agreeableness' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(904,48): error TS2339: Property 'agreeableness' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(905,19): error TS2339: Property 'neuroticism' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(905,46): error TS2339: Property 'neuroticism' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(908,24): error TS2339: Property 'openness' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(908,48): error TS2339: Property 'openness' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(909,24): error TS2339: Property 'extraversion' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(909,52): error TS2339: Property 'extraversion' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(923,7): error TS2353: Object literal may only specify known properties, and 'openness' does not exist in type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(930,7): error TS2353: Object literal may only specify known properties, and 'openness' does not exist in type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(937,7): error TS2353: Object literal may only specify known properties, and 'openness' does not exist in type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(951,35): error TS2362: The left-hand side of an arithmetic operation must be of type 'any', 'number', 'bigint' or an enum type.
+src/scoring/ocean-executive-org-scoring.ts(951,58): error TS2363: The right-hand side of an arithmetic operation must be of type 'any', 'number', 'bigint' or an enum type.
+src/scoring/ocean-executive-org-scoring.ts(967,11): error TS2339: Property 'openness' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(967,39): error TS2339: Property 'openness' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(968,11): error TS2339: Property 'conscientiousness' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(968,48): error TS2339: Property 'conscientiousness' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(969,11): error TS2339: Property 'extraversion' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(969,43): error TS2339: Property 'extraversion' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(970,11): error TS2339: Property 'neuroticism' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(970,42): error TS2339: Property 'neuroticism' does not exist on type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(975,33): error TS2362: The left-hand side of an arithmetic operation must be of type 'any', 'number', 'bigint' or an enum type.
+src/scoring/ocean-executive-org-scoring.ts(975,52): error TS2363: The right-hand side of an arithmetic operation must be of type 'any', 'number', 'bigint' or an enum type.
+src/scoring/ocean-executive-org-scoring.ts(1072,5): error TS2353: Object literal may only specify known properties, and 'openness' does not exist in type 'OceanScore'.
+src/scoring/ocean-executive-org-scoring.ts(1088,30): error TS2362: The left-hand side of an arithmetic operation must be of type 'any', 'number', 'bigint' or an enum type.
+src/scoring/ocean-executive-org-scoring.ts(1091,9): error TS2367: This comparison appears to be unintentional because the types 'keyof OceanScore' and '"neuroticism"' have no overlap.
+src/scoring/ocean-executive-org-scoring.ts(1093,16): error TS2367: This comparison appears to be unintentional because the types 'keyof OceanScore' and '"agreeableness"' have no overlap.
+src/scoring/ocean-executive-org-scoring.ts(1096,36): error TS2365: Operator '+' cannot be applied to types 'string | OceanTraits | OceanFacets' and 'number'.
+src/scoring/ocean-executive-org-scoring.ts(1099,5): error TS2322: Type 'number' is not assignable to type 'OceanTraits & OceanFacets & string'.
+  Type 'number' is not assignable to type 'OceanTraits'.
+src/scoring/ocean-executive-org-scoring.ts(1100,7): error TS2362: The left-hand side of an arithmetic operation must be of type 'any', 'number', 'bigint' or an enum type.
+src/scoring/ocean-executive-org-scoring.ts(1109,32): error TS2363: The right-hand side of an arithmetic operation must be of type 'any', 'number', 'bigint' or an enum type.
+src/scoring/ocean-executive-org-scoring.ts(1155,16): error TS2362: The left-hand side of an arithmetic operation must be of type 'any', 'number', 'bigint' or an enum type.
+src/scoring/ocean-executive-org-scoring.ts(1156,16): error TS2363: The right-hand side of an arithmetic operation must be of type 'any', 'number', 'bigint' or an enum type.
+src/scoring/ocean-scoring.ts(392,21): error TS2352: Conversion of type '{ [trait: string]: number; }' to type 'OceanTraits' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
+  Type '{ [trait: string]: number; }' is missing the following properties from type 'OceanTraits': openness, conscientiousness, extraversion, agreeableness, neuroticism
+src/services/DashboardService.ts(1,26): error TS2307: Cannot find module '@/database/types' or its corresponding type declarations.
+src/services/DashboardService.ts(152,14): error TS2322: Type '{ [x: string]: unknown; }[]' is not assignable to type 'DashboardMetric[]'.
+  Type '{ [x: string]: unknown; }' is missing the following properties from type 'DashboardMetric': id, organization_id, metric_type, metric_name, and 3 more.
+src/services/DashboardService.ts(190,5): error TS2740: Type '{ [x: string]: unknown; }' is missing the following properties from type 'DashboardMetric': id, organization_id, metric_type, metric_name, and 3 more.
+src/services/DashboardService.ts(228,5): error TS2740: Type '{}' is missing the following properties from type 'DashboardSummary': organization_id, period_start, period_end, user_stats, and 3 more.
+src/services/DashboardService.ts(243,5): error TS2740: Type '{}' is missing the following properties from type 'RealtimeData': timestamp, organization_id, active_users_15min, active_users_today, and 6 more.
+src/services/DashboardService.ts(264,5): error TS2740: Type '{}' is missing the following properties from type 'TrendAnalysis': metric_type, metric_name, organization_id, periods_analyzed, and 2 more.
+src/services/DashboardService.ts(307,14): error TS2322: Type '{ [x: string]: unknown; }[]' is not assignable to type 'AssessmentAggregation[]'.
+  Type '{ [x: string]: unknown; }' is missing the following properties from type 'AssessmentAggregation': id, organization_id, aggregation_type, aggregation_key, and 7 more.
+src/services/DashboardService.ts(326,14): error TS2322: Type 'unknown' is not assignable to type 'number'.
+src/services/DashboardService.ts(369,14): error TS2322: Type '{ [x: string]: unknown; }[]' is not assignable to type 'UserActivity[]'.
+  Type '{ [x: string]: unknown; }' is missing the following properties from type 'UserActivity': id, user_id, organization_id, activity_type, and 3 more.
+src/services/DashboardService.ts(404,14): error TS2322: Type 'unknown' is not assignable to type 'string'.
+src/services/ReportsService.ts(1,26): error TS2307: Cannot find module '@/database/types' or its corresponding type declarations.
+src/services/ReportsService.ts(111,14): error TS2322: Type '{ [x: string]: unknown; }[]' is not assignable to type 'WeeklyReport[]'.
+  Type '{ [x: string]: unknown; }' is missing the following properties from type 'WeeklyReport': id, organization_id, report_period_start, report_period_end, and 5 more.
+src/services/ReportsService.ts(145,7): error TS2322: Type '{ [x: string]: unknown; }[]' is not assignable to type 'ReportSection[]'.
+  Type '{ [x: string]: unknown; }' is missing the following properties from type 'ReportSection': id, report_id, section_type, section_title, and 3 more.
+src/services/ReportsService.ts(181,5): error TS2740: Type '{ [x: string]: unknown; }' is missing the following properties from type 'WeeklyReport': id, organization_id, report_period_start, report_period_end, and 5 more.
+src/services/ReportsService.ts(220,5): error TS2740: Type '{ [x: string]: unknown; }' is missing the following properties from type 'WeeklyReport': id, organization_id, report_period_start, report_period_end, and 5 more.
+src/services/ReportsService.ts(282,5): error TS2740: Type '{ [x: string]: unknown; }' is missing the following properties from type 'ReportSection': id, report_id, section_type, section_title, and 3 more.
+src/services/ReportsService.ts(328,5): error TS2740: Type '{ [x: string]: unknown; }' is missing the following properties from type 'ReportSection': id, report_id, section_type, section_title, and 3 more.
+src/services/ReportsService.ts(389,14): error TS2322: Type '{ [x: string]: unknown; }[]' is not assignable to type 'ReportTemplate[]'.
+  Type '{ [x: string]: unknown; }' is missing the following properties from type 'ReportTemplate': id, name, template_type, target_audience, and 6 more.
+src/services/ReportsService.ts(423,5): error TS2740: Type '{ [x: string]: unknown; }' is missing the following properties from type 'ReportTemplate': id, name, template_type, target_audience, and 6 more.
+src/services/ReportsService.ts(446,14): error TS2322: Type '{ [x: string]: unknown; }[]' is not assignable to type 'ReportDistributionList[]'.
+  Type '{ [x: string]: unknown; }' is missing the following properties from type 'ReportDistributionList': id, organization_id, list_name, recipient_emails, and 5 more.
+src/services/ReportsService.ts(478,5): error TS2740: Type '{ [x: string]: unknown; }' is missing the following properties from type 'ReportDistributionList': id, organization_id, list_name, recipient_emails, and 5 more.
+src/services/SystemService.ts(88,14): error TS2322: Type '{ [x: string]: unknown; }[]' is not assignable to type 'SystemPerformanceMetric[]'.
+  Type '{ [x: string]: unknown; }' is missing the following properties from type 'SystemPerformanceMetric': id, metric_type, metric_name, metric_value, and 2 more.
+src/services/SystemService.ts(120,5): error TS2740: Type '{ [x: string]: unknown; }' is missing the following properties from type 'SystemPerformanceMetric': id, metric_type, metric_name, metric_value, and 2 more.
+src/services/SystemService.ts(182,7): error TS2322: Type '{ [x: string]: unknown; }[]' is not assignable to type 'ScheduledJobLog[]'.
+  Type '{ [x: string]: unknown; }' is missing the following properties from type 'ScheduledJobLog': id, job_name, job_type, status, and 3 more.
+src/services/SystemService.ts(183,16): error TS2352: Conversion of type '{ [x: string]: unknown; }[]' to type 'ScheduledJobConfig[]' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
+  Type '{ [x: string]: unknown; }' is missing the following properties from type 'ScheduledJobConfig': id, job_name, job_type, schedule_expression, and 7 more.
+src/services/SystemService.ts(419,12): error TS2352: Conversion of type '{ [x: string]: unknown; }' to type 'ScheduledJobConfig' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
+  Type '{ [x: string]: unknown; }' is missing the following properties from type 'ScheduledJobConfig': id, job_name, job_type, schedule_expression, and 7 more.
+src/services/SystemService.ts(449,12): error TS2352: Conversion of type '{ [x: string]: unknown; }' to type 'ScheduledJobConfig' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
+  Type '{ [x: string]: unknown; }' is missing the following properties from type 'ScheduledJobConfig': id, job_name, job_type, schedule_expression, and 7 more.
+src/services/SystemService.ts(535,16): error TS2339: Property 'error_count' does not exist on type 'unknown'.
+src/services/SystemService.ts(536,16): error TS2339: Property 'latest_error' does not exist on type 'unknown'.

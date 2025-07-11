@@ -1,0 +1,185 @@
+/**
+ * @fileoverview Global styles for IOC Core monorepo
+ * @description Shared styles across all applications
+ */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base styles using IOC brand system */
+:root {
+  --foreground-rgb: 51, 65, 85; /* Using ioc-slate color */
+  --background-start-rgb: 255, 255, 255;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+/* Reset styles */
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: rgb(var(--background-start-rgb));
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  line-height: 1.6;
+  font-feature-settings: 'rlig' 1, 'calt' 1;
+}
+
+/* Typography using IOC brand system */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: theme('colors.ioc-navy');
+}
+
+p {
+  line-height: 1.7;
+  color: theme('colors.ioc-slate');
+}
+
+/* Smooth transitions for interactive elements */
+a, button {
+  transition: all 0.2s ease;
+}
+
+/* Improved focus states */
+a:focus,
+button:focus,
+input:focus,
+textarea:focus,
+select:focus {
+  outline: 2px solid theme('colors.ioc-blue');
+  outline-offset: 2px;
+}
+
+/* Button normalization */
+button {
+  font-family: inherit;
+}
+
+/* Selection colors */
+::selection {
+  background-color: theme('colors.ioc-blue');
+  color: white;
+}
+
+::-moz-selection {
+  background-color: theme('colors.ioc-blue');
+  color: white;
+}
+
+/* Image optimization */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Link defaults */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Utility layer */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  /* IOC-specific utilities */
+  .ioc-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  
+  .ioc-section-padding {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
+  
+  .ioc-card {
+    @apply bg-white rounded-lg border border-gray-200 shadow-ioc-soft;
+  }
+  
+  .ioc-button {
+    @apply inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 transition-all duration-200;
+  }
+  
+  .ioc-button-primary {
+    @apply ioc-button text-white bg-ioc-blue hover:bg-ioc-navy focus:ring-ioc-blue;
+  }
+  
+  .ioc-button-secondary {
+    @apply ioc-button text-ioc-slate bg-white border-gray-300 hover:bg-gray-50 focus:ring-ioc-blue;
+  }
+  
+  .ioc-input {
+    @apply block w-full rounded-md border-gray-300 shadow-sm focus:border-ioc-blue focus:ring-ioc-blue sm:text-sm;
+  }
+  
+  .ioc-label {
+    @apply block text-sm font-medium text-ioc-slate mb-1;
+  }
+  
+  .ioc-badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+  
+  .ioc-badge-success {
+    @apply ioc-badge bg-green-100 text-green-800;
+  }
+  
+  .ioc-badge-warning {
+    @apply ioc-badge bg-yellow-100 text-yellow-800;
+  }
+  
+  .ioc-badge-error {
+    @apply ioc-badge bg-red-100 text-red-800;
+  }
+  
+  .ioc-badge-info {
+    @apply ioc-badge bg-blue-100 text-blue-800;
+  }
+  
+  .ioc-gradient-text {
+    @apply bg-gradient-to-r from-ioc-blue to-ioc-navy bg-clip-text text-transparent;
+  }
+  
+  .ioc-shadow-card {
+    @apply shadow-ioc-medium;
+  }
+  
+  .ioc-focus-ring {
+    @apply focus:outline-none focus:ring-2 focus:ring-ioc-blue focus:ring-offset-2;
+  }
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

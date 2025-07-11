@@ -1,0 +1,376 @@
+name: Nx Deploy Pipeline
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+env:
+  NODE_VERSION: '18.x'
+  NX_CLOUD_ACCESS_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+
+jobs:
+  analyze:
+    name: Analyze Changes
+    runs-on: ubuntu-latest
+    outputs:
+      affected-apps: ${{ steps.affected.outputs.apps }}
+      affected-libs: ${{ steps.affected.outputs.libs }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Get affected projects
+        id: affected
+        run: |
+          AFFECTED_APPS=$(npx nx print-affected --type=app --select=projects)
+          AFFECTED_LIBS=$(npx nx print-affected --type=lib --select=projects)
+          echo "apps=$AFFECTED_APPS" >> $GITHUB_OUTPUT
+          echo "libs=$AFFECTED_LIBS" >> $GITHUB_OUTPUT
+          echo "Affected apps: $AFFECTED_APPS"
+          echo "Affected libs: $AFFECTED_LIBS"
+
+  lint:
+    name: Lint Affected
+    runs-on: ubuntu-latest
+    needs: analyze
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint affected projects
+        run: npx nx affected:lint --parallel=3
+
+  test:
+    name: Test Affected
+    runs-on: ubuntu-latest
+    needs: analyze
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Test affected projects
+        run: npx nx affected:test --parallel=3 --ci --coverage
+
+      - name: Upload coverage reports
+        uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          flags: unittests
+          name: codecov-umbrella
+
+  build:
+    name: Build Affected
+    runs-on: ubuntu-latest
+    needs: [lint, test]
+    strategy:
+      matrix:
+        app: [main-application, admin-dashboard, beta-application, dev-sandbox]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Check if app is affected
+        id: check-affected
+        run: |
+          AFFECTED=$(npx nx print-affected --type=app --select=projects | grep -w "${{ matrix.app }}" || echo "")
+          if [ -n "$AFFECTED" ]; then
+            echo "affected=true" >> $GITHUB_OUTPUT
+          else
+            echo "affected=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Build app
+        if: steps.check-affected.outputs.affected == 'true'
+        run: npx nx build ${{ matrix.app }} --configuration=production
+
+      - name: Upload build artifacts
+        if: steps.check-affected.outputs.affected == 'true'
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ matrix.app }}-build
+          path: dist/apps/${{ matrix.app }}
+          retention-days: 7
+
+  performance:
+    name: Performance Check
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.event_name == 'pull_request'
+    strategy:
+      matrix:
+        app: [main-application, admin-dashboard, beta-application]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Check if app is affected
+        id: check-affected
+        run: |
+          AFFECTED=$(npx nx print-affected --type=app --select=projects | grep -w "${{ matrix.app }}" || echo "")
+          if [ -n "$AFFECTED" ]; then
+            echo "affected=true" >> $GITHUB_OUTPUT
+          else
+            echo "affected=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Run performance analysis
+        if: steps.check-affected.outputs.affected == 'true'
+        run: |
+          npx nx run ${{ matrix.app }}:analyze-bundle
+          npx nx run ${{ matrix.app }}:lighthouse
+
+      - name: Comment PR with performance results
+        if: steps.check-affected.outputs.affected == 'true'
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const fs = require('fs');
+            const performanceReport = fs.readFileSync('performance-report.json', 'utf8');
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `## Performance Report for ${{ matrix.app }}\n\n\`\`\`json\n${performanceReport}\n\`\`\``
+            });
+
+  deploy-preview:
+    name: Deploy Preview
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.event_name == 'pull_request'
+    strategy:
+      matrix:
+        include:
+          - app: main-application
+            project_id: ${{ secrets.VERCEL_PROJECT_ID_MAIN }}
+          - app: admin-dashboard
+            project_id: ${{ secrets.VERCEL_PROJECT_ID_ADMIN }}
+          - app: beta-application
+            project_id: ${{ secrets.VERCEL_PROJECT_ID_BETA }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check if app is affected
+        id: check-affected
+        run: |
+          npm ci
+          AFFECTED=$(npx nx print-affected --type=app --select=projects | grep -w "${{ matrix.app }}" || echo "")
+          if [ -n "$AFFECTED" ]; then
+            echo "affected=true" >> $GITHUB_OUTPUT
+          else
+            echo "affected=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Install Vercel CLI
+        if: steps.check-affected.outputs.affected == 'true'
+        run: npm install --global vercel@latest
+
+      - name: Deploy to Vercel Preview
+        if: steps.check-affected.outputs.affected == 'true'
+        run: |
+          cd apps/${{ matrix.app }}
+          vercel pull --yes --environment=preview --token=${{ env.VERCEL_TOKEN }}
+          vercel build --token=${{ env.VERCEL_TOKEN }}
+          vercel deploy --prebuilt --token=${{ env.VERCEL_TOKEN }} > deployment-url.txt
+
+      - name: Comment PR with preview URL
+        if: steps.check-affected.outputs.affected == 'true'
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const fs = require('fs');
+            const url = fs.readFileSync('apps/${{ matrix.app }}/deployment-url.txt', 'utf8').trim();
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `🚀 Preview deployment for **${{ matrix.app }}** is ready!\n\n🔗 ${url}`
+            });
+
+  deploy-production:
+    name: Deploy to Production
+    runs-on: ubuntu-latest
+    needs: [build, lint, test]
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    strategy:
+      matrix:
+        include:
+          - app: main-application
+            project_id: ${{ secrets.VERCEL_PROJECT_ID_MAIN }}
+            domain: iocframework.com
+          - app: admin-dashboard
+            project_id: ${{ secrets.VERCEL_PROJECT_ID_ADMIN }}
+            domain: admin.iocframework.com
+          - app: beta-application
+            project_id: ${{ secrets.VERCEL_PROJECT_ID_BETA }}
+            domain: beta.iocframework.com
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Check if app is affected
+        id: check-affected
+        run: |
+          AFFECTED=$(npx nx print-affected --type=app --select=projects | grep -w "${{ matrix.app }}" || echo "")
+          if [ -n "$AFFECTED" ]; then
+            echo "affected=true" >> $GITHUB_OUTPUT
+          else
+            echo "affected=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Install Vercel CLI
+        if: steps.check-affected.outputs.affected == 'true'
+        run: npm install --global vercel@latest
+
+      - name: Deploy to Vercel Production
+        if: steps.check-affected.outputs.affected == 'true'
+        env:
+          VERCEL_PROJECT_ID: ${{ matrix.project_id }}
+        run: |
+          cd apps/${{ matrix.app }}
+          vercel pull --yes --environment=production --token=${{ env.VERCEL_TOKEN }}
+          vercel build --prod --token=${{ env.VERCEL_TOKEN }}
+          vercel deploy --prebuilt --prod --token=${{ env.VERCEL_TOKEN }} > deployment-url.txt
+          echo "Deployed to production: $(cat deployment-url.txt)"
+
+      - name: Run smoke tests
+        if: steps.check-affected.outputs.affected == 'true'
+        run: |
+          npm run e2e:smoke -- --url=https://${{ matrix.domain }}
+
+      - name: Rollback on failure
+        if: failure() && steps.check-affected.outputs.affected == 'true'
+        run: |
+          echo "Deployment failed, initiating rollback..."
+          vercel rollback --token=${{ env.VERCEL_TOKEN }}
+
+      - name: Notify deployment status
+        if: always() && steps.check-affected.outputs.affected == 'true'
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const status = '${{ job.status }}';
+            const app = '${{ matrix.app }}';
+            const domain = '${{ matrix.domain }}';
+            const message = status === 'success' 
+              ? `✅ ${app} successfully deployed to ${domain}`
+              : `❌ ${app} deployment to ${domain} failed`;
+            
+            // Send notification (webhook, Slack, etc.)
+            console.log(message);
+
+  deploy-dev-sandbox:
+    name: Deploy Dev Sandbox (Docker)
+    runs-on: ubuntu-latest
+    needs: [build, lint, test]
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check if dev-sandbox is affected
+        id: check-affected
+        run: |
+          npm ci
+          AFFECTED=$(npx nx print-affected --type=app --select=projects | grep -w "dev-sandbox" || echo "")
+          if [ -n "$AFFECTED" ]; then
+            echo "affected=true" >> $GITHUB_OUTPUT
+          else
+            echo "affected=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Build Docker image
+        if: steps.check-affected.outputs.affected == 'true'
+        run: |
+          docker build -f apps/dev-sandbox/Dockerfile -t ioc-dev-sandbox:latest .
+
+      - name: Deploy to development server
+        if: steps.check-affected.outputs.affected == 'true'
+        env:
+          DEPLOY_HOST: ${{ secrets.DEV_DEPLOY_HOST }}
+          DEPLOY_KEY: ${{ secrets.DEV_DEPLOY_KEY }}
+        run: |
+          echo "Deploying dev-sandbox to development server..."
+          # Add deployment script for dev server here
+
+  cleanup:
+    name: Cleanup
+    runs-on: ubuntu-latest
+    needs: [deploy-production, deploy-preview]
+    if: always()
+    steps:
+      - name: Clean up artifacts
+        uses: geekyeggo/delete-artifact@v2
+        with:
+          name: |
+            main-application-build
+            admin-dashboard-build
+            beta-application-build
+            dev-sandbox-build

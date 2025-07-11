@@ -1,0 +1,44 @@
+{
+  "name": "@ioc/migration-tools",
+  "version": "1.0.0",
+  "description": "IOC Core to Nx migration toolkit",
+  "private": true,
+  "scripts": {
+    "migrate": "node migrate-all.js",
+    "migrate:content": "node migrate-content.js",
+    "migrate:imports": "node transform-imports.js",
+    "validate": "node validate-migration.js",
+    "rollback": "node rollback-migration.js",
+    "help": "node migrate-all.js --help"
+  },
+  "bin": {
+    "ioc-migrate": "./migrate-all.js",
+    "ioc-migrate-content": "./migrate-content.js",
+    "ioc-migrate-imports": "./transform-imports.js",
+    "ioc-migrate-validate": "./validate-migration.js",
+    "ioc-migrate-rollback": "./rollback-migration.js"
+  },
+  "dependencies": {
+    "@babel/generator": "^7.23.0",
+    "@babel/parser": "^7.23.0",
+    "@babel/traverse": "^7.23.0",
+    "@babel/types": "^7.23.0",
+    "chalk": "^4.1.2",
+    "fs-extra": "^11.1.1",
+    "glob": "^10.3.10",
+    "typescript": "^5.2.2",
+    "yargs": "^17.7.2"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "keywords": [
+    "migration",
+    "turbo",
+    "nx",
+    "monorepo",
+    "ioc"
+  ],
+  "author": "IOC Team",
+  "license": "MIT"
+}

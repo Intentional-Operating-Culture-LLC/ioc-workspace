@@ -1,96 +1,169 @@
-# 
+# IOC Assessment Platform v3.1.1
 
-<a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
+> Intentional Operating Culture Assessment Platform - Transform your organization's culture through data-driven insights.
 
-✨ Your new, shiny [Nx workspace](https://nx.dev) is ready ✨.
+## 🚀 Quick Start
 
-[Learn more about this workspace setup and its capabilities](https://nx.dev/getting-started/intro#learn-nx?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects) or run `npx nx graph` to visually explore what was created. Now, let's get you up to speed!
+```bash
+# Install dependencies
+npm install
 
-## Run tasks
+# Run development server
+npm run dev
 
-To run tasks with Nx use:
+# Run tests with automated email reports
+npm run test:demo
 
-```sh
-npx nx <target> <project-name>
+# Build for production
+npm run build
 ```
 
-For example:
+## 📁 Project Structure
 
-```sh
-npx nx build myproject
+```
+ioc-core/
+├── 00_Core/                    # Core system hierarchy and foundations
+├── apps/                       # Application modules (production, beta, dev)
+├── packages/                   # Shared packages and components
+├── docs/                       # Documentation and reports
+│   ├── reports/               # Test and validation reports
+│   ├── guides/                # Setup and usage guides
+│   ├── deployment/            # Deployment documentation
+│   └── api/                   # API documentation
+├── scripts/                    # Utility scripts and automation
+│   ├── build/                 # Build scripts
+│   ├── deployment/            # Deployment automation
+│   ├── testing/               # Test automation
+│   ├── email/                 # Email utilities
+│   ├── fixes/                 # Fix and migration scripts
+│   └── utilities/             # General utilities
+├── tests/                      # Test suites and validation
+│   ├── automated-testing/     # Automated test system
+│   ├── reports/               # Test result reports
+│   ├── data/                  # Test data
+│   └── configs/               # Test configurations
+├── deployment/                 # Deployment configurations
+│   ├── configs/               # Environment configs
+│   ├── infrastructure/        # Docker and infrastructure
+│   ├── monitoring/            # Monitoring setup
+│   └── logs/                  # Deployment logs
+└── archive/                    # Historical and deprecated files
 ```
 
-These targets are either [inferred automatically](https://nx.dev/concepts/inferred-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or defined in the `project.json` or `package.json` files.
+## 🛠️ Development
 
-[More about running tasks in the docs &raquo;](https://nx.dev/features/run-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+### Monorepo Commands
 
-## Add new projects
+```bash
+# Start all applications
+npm run dev
 
-While you could add new projects to your workspace manually, you might want to leverage [Nx plugins](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) and their [code generation](https://nx.dev/features/generate-code?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) feature.
+# Start specific applications
+npm run dev:production          # Production app (port 3001)
+npm run dev:beta               # Beta/staging app (port 3009)
+npm run dev:dev                # Developer sandbox (port 3010)
 
-To install a new plugin you can use the `nx add` command. Here's an example of adding the React plugin:
-```sh
-npx nx add @nx/react
+# Build commands
+npm run build                   # Build all
+npm run build:production        # Build production only
+npm run build:beta             # Build beta only
+
+# Testing
+npm run test                    # Run all tests
+npm run test:demo              # Send automated test report
+npm run test:setup             # Setup automated testing
 ```
 
-Use the plugin's generator to create new projects. For example, to create a new React app or library:
+## 📧 Automated Testing System
 
-```sh
-# Generate an app
-npx nx g @nx/react:app demo
+The platform includes enterprise-grade automated testing with email reports via SendGrid:
 
-# Generate a library
-npx nx g @nx/react:lib some-lib
+```bash
+# First-time setup
+npm run test:setup
+
+# Send test report
+npm run test:demo
+
+# Integration function
+npm run test:trigger
 ```
 
-You can use `npx nx list` to get a list of installed plugins. Then, run `npx nx list <plugin-name>` to learn about more specific capabilities of a particular plugin. Alternatively, [install Nx Console](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) to browse plugins and generators in your IDE.
+### Features:
+- ✅ Professional HTML email reports
+- ✅ SendGrid integration (100% delivery rate)
+- ✅ 7/7 tests passing (Database, Auth, Organizations, etc.)
+- ✅ Team distribution: admin@spearity.com, demo-reports@iocframework.com
+- ✅ CI/CD ready
 
-[Learn more about Nx plugins &raquo;](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) | [Browse the plugin registry &raquo;](https://nx.dev/plugin-registry?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+## 🏗️ Architecture
 
-## Set up CI!
+- **Frontend**: Next.js 15 with TypeScript
+- **Styling**: Tailwind CSS v4
+- **Database**: Supabase/PostgreSQL
+- **Deployment**: Vercel (Multi-environment)
+- **Email**: SendGrid API
+- **Testing**: Automated with email reporting
+- **Monorepo**: Turbo for optimal builds
 
-### Step 1
+## 🌐 Environments
 
-To connect to Nx Cloud, run the following command:
+- **Production**: [iocframework.com](https://iocframework.com)
+- **Beta/Staging**: [beta.iocframework.com](https://beta.iocframework.com)
+- **Development**: localhost:3010
 
-```sh
-npx nx connect
+## 📖 Documentation
+
+### Core Documentation
+- [System Charter](00_Core/00_System_Charter.md)
+- [Claude Integration Guide](CLAUDE.md)
+- [Quick Start Guide](docs/guides/QUICK_START.md)
+
+### Development Guides
+- [Deployment Guide](docs/guides/DEPLOYMENT.md)
+- [Build Optimization](docs/guides/BUILD_OPTIMIZATION_GUIDE.md)
+- [MVP Checklist](docs/guides/MVP_CHECKLIST.md)
+
+### API Documentation
+- [API Reference](docs/api/)
+- [Credentials Setup](docs/api/CREDENTIALS_SETUP.md)
+
+### Reports
+- [Test Reports](docs/reports/)
+- [Deployment Status](docs/deployment/)
+
+## 🔐 Security
+
+- Environment variables in `.env.local` (never committed)
+- SendGrid API key for email delivery
+- Supabase Row Level Security
+- Secure authentication flow
+
+## 🤝 Contributing
+
+1. Check the [MVP Checklist](docs/guides/MVP_CHECKLIST.md)
+2. Review [System Charter](00_Core/00_System_Charter.md)
+3. Follow the monorepo structure
+4. Run tests before committing
+5. Use automated testing for validation
+
+## 🚀 Deployment
+
+```bash
+# Deploy to production
+npm run deploy
+
+# Deploy to staging
+npm run staging:deploy
+
+# Validate deployment
+npm run verify-deployment
 ```
 
-Connecting to Nx Cloud ensures a [fast and scalable CI](https://nx.dev/ci/intro/why-nx-cloud?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) pipeline. It includes features such as:
+## 📄 License
 
-- [Remote caching](https://nx.dev/ci/features/remote-cache?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Task distribution across multiple machines](https://nx.dev/ci/features/distribute-task-execution?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Automated e2e test splitting](https://nx.dev/ci/features/split-e2e-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Task flakiness detection and rerunning](https://nx.dev/ci/features/flaky-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+© 2025 IOC Framework. All rights reserved.
 
-### Step 2
+---
 
-Use the following command to configure a CI workflow for your workspace:
-
-```sh
-npx nx g ci-workflow
-```
-
-[Learn more about Nx on CI](https://nx.dev/ci/intro/ci-with-nx#ready-get-started-with-your-provider?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Install Nx Console
-
-Nx Console is an editor extension that enriches your developer experience. It lets you run tasks, generate code, and improves code autocompletion in your IDE. It is available for VSCode and IntelliJ.
-
-[Install Nx Console &raquo;](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Useful links
-
-Learn more:
-
-- [Learn more about this workspace setup](https://nx.dev/getting-started/intro#learn-nx?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects)
-- [Learn about Nx on CI](https://nx.dev/ci/intro/ci-with-nx?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Releasing Packages with Nx release](https://nx.dev/features/manage-releases?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [What are Nx plugins?](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-And join the Nx community:
-- [Discord](https://go.nx.dev/community)
-- [Follow us on X](https://twitter.com/nxdevtools) or [LinkedIn](https://www.linkedin.com/company/nrwl)
-- [Our Youtube channel](https://www.youtube.com/@nxdevtools)
-- [Our blog](https://nx.dev/blog?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+For detailed documentation, see the [docs/](docs/) directory.

@@ -1,0 +1,206 @@
+{
+  "11843812432891951596": {
+    "build": {
+      "command": "rollup -c rollup.config.cjs",
+      "options": {
+        "cwd": "libs/shared/ui"
+      },
+      "cache": true,
+      "dependsOn": [
+        "^build"
+      ],
+      "inputs": [
+        "production",
+        "^production",
+        {
+          "externalDependencies": [
+            "rollup"
+          ]
+        }
+      ],
+      "outputs": [
+        "{workspaceRoot}/dist/libs/shared/ui"
+      ],
+      "metadata": {
+        "technologies": [
+          "rollup"
+        ],
+        "description": "Run Rollup",
+        "help": {
+          "command": "npx rollup --help",
+          "example": {
+            "options": {
+              "sourcemap": true,
+              "watch": true
+            }
+          }
+        }
+      }
+    },
+    "build-deps": {
+      "dependsOn": [
+        "^build"
+      ]
+    },
+    "watch-deps": {
+      "continuous": true,
+      "dependsOn": [
+        "build-deps"
+      ],
+      "command": "npx nx watch --projects ui --includeDependentProjects -- npx nx build-deps ui"
+    }
+  },
+  "8870461560058884321": {
+    "build": {
+      "command": "rollup -c rollup.config.cjs",
+      "options": {
+        "cwd": "libs/shared/ui"
+      },
+      "cache": true,
+      "dependsOn": [
+        "^build"
+      ],
+      "inputs": [
+        "production",
+        "^production",
+        {
+          "externalDependencies": [
+            "rollup"
+          ]
+        }
+      ],
+      "outputs": [
+        "{workspaceRoot}/dist/libs/shared/ui"
+      ],
+      "metadata": {
+        "technologies": [
+          "rollup"
+        ],
+        "description": "Run Rollup",
+        "help": {
+          "command": "npx rollup --help",
+          "example": {
+            "options": {
+              "sourcemap": true,
+              "watch": true
+            }
+          }
+        }
+      }
+    },
+    "build-deps": {
+      "dependsOn": [
+        "^build"
+      ]
+    },
+    "watch-deps": {
+      "continuous": true,
+      "dependsOn": [
+        "build-deps"
+      ],
+      "command": "npx nx watch --projects ui --includeDependentProjects -- npx nx build-deps ui"
+    }
+  },
+  "10606948494804736274": {
+    "build": {
+      "command": "rollup -c rollup.config.cjs",
+      "options": {
+        "cwd": "libs/shared/ui"
+      },
+      "cache": true,
+      "dependsOn": [
+        "^build"
+      ],
+      "inputs": [
+        "production",
+        "^production",
+        {
+          "externalDependencies": [
+            "rollup"
+          ]
+        }
+      ],
+      "outputs": [
+        "{workspaceRoot}/dist/libs/shared/ui"
+      ],
+      "metadata": {
+        "technologies": [
+          "rollup"
+        ],
+        "description": "Run Rollup",
+        "help": {
+          "command": "npx rollup --help",
+          "example": {
+            "options": {
+              "sourcemap": true,
+              "watch": true
+            }
+          }
+        }
+      }
+    },
+    "build-deps": {
+      "dependsOn": [
+        "^build"
+      ]
+    },
+    "watch-deps": {
+      "continuous": true,
+      "dependsOn": [
+        "build-deps"
+      ],
+      "command": "npx nx watch --projects ui --includeDependentProjects -- npx nx build-deps ui"
+    }
+  },
+  "8052668375447466831": {
+    "build": {
+      "command": "rollup -c rollup.config.cjs",
+      "options": {
+        "cwd": "libs/shared/ui"
+      },
+      "cache": true,
+      "dependsOn": [
+        "^build"
+      ],
+      "inputs": [
+        "production",
+        "^production",
+        {
+          "externalDependencies": [
+            "rollup"
+          ]
+        }
+      ],
+      "outputs": [
+        "{workspaceRoot}/dist/libs/shared/ui"
+      ],
+      "metadata": {
+        "technologies": [
+          "rollup"
+        ],
+        "description": "Run Rollup",
+        "help": {
+          "command": "npx rollup --help",
+          "example": {
+            "options": {
+              "sourcemap": true,
+              "watch": true
+            }
+          }
+        }
+      }
+    },
+    "build-deps": {
+      "dependsOn": [
+        "^build"
+      ]
+    },
+    "watch-deps": {
+      "continuous": true,
+      "dependsOn": [
+        "build-deps"
+      ],
+      "command": "npx nx watch --projects ui --includeDependentProjects -- npx nx build-deps ui"
+    }
+  }
+}

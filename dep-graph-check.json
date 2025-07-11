@@ -1,0 +1,1937 @@
+{
+  "graph": {
+    "nodes": {
+      "ocean-analytics": {
+        "name": "ocean-analytics",
+        "type": "lib",
+        "data": {
+          "root": "libs/assessment/ocean-analytics",
+          "name": "ocean-analytics",
+          "targets": {
+            "build": {
+              "dependsOn": [
+                "^build"
+              ],
+              "inputs": [
+                "production",
+                "^production"
+              ],
+              "cache": true,
+              "executor": "@nx/js:tsc",
+              "outputs": [
+                "{options.outputPath}"
+              ],
+              "options": {
+                "outputPath": "dist/libs/assessment/ocean-analytics",
+                "main": "libs/assessment/ocean-analytics/src/index.ts",
+                "tsConfig": "libs/assessment/ocean-analytics/tsconfig.lib.json",
+                "assets": [
+                  "libs/assessment/ocean-analytics/*.md"
+                ]
+              },
+              "configurations": {}
+            }
+          },
+          "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+          "sourceRoot": "libs/assessment/ocean-analytics/src",
+          "projectType": "library",
+          "tags": [
+            "scope:assessment",
+            "type:feature"
+          ],
+          "implicitDependencies": []
+        }
+      },
+      "lambda-analytics": {
+        "name": "lambda-analytics",
+        "type": "lib",
+        "data": {
+          "root": "libs/features/lambda-analytics",
+          "name": "lambda-analytics",
+          "targets": {
+            "build": {
+              "executor": "nx:run-script",
+              "dependsOn": [
+                "^build"
+              ],
+              "inputs": [
+                "production",
+                "^production"
+              ],
+              "cache": true,
+              "options": {
+                "script": "build"
+              },
+              "configurations": {}
+            },
+            "build:lambda": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "build:lambda"
+              },
+              "configurations": {}
+            },
+            "bundle": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "bundle"
+              },
+              "configurations": {}
+            },
+            "deploy": {
+              "executor": "nx:run-script",
+              "dependsOn": [
+                "build"
+              ],
+              "cache": false,
+              "options": {
+                "script": "deploy"
+              },
+              "configurations": {}
+            },
+            "test": {
+              "executor": "@nx/jest:jest",
+              "outputs": [
+                "{workspaceRoot}/coverage/{projectRoot}"
+              ],
+              "options": {
+                "jestConfig": "libs/features/lambda-analytics/jest.config.ts",
+                "passWithNoTests": true
+              },
+              "configurations": {}
+            },
+            "test:local": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "test:local"
+              },
+              "configurations": {}
+            },
+            "optimize": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "optimize"
+              },
+              "configurations": {}
+            },
+            "cost-analysis": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "cost-analysis"
+              },
+              "configurations": {}
+            },
+            "monitoring:setup": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "monitoring:setup"
+              },
+              "configurations": {}
+            },
+            "monitoring:create-dashboards": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "monitoring:create-dashboards"
+              },
+              "configurations": {}
+            },
+            "monitoring:weekly-report": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "monitoring:weekly-report"
+              },
+              "configurations": {}
+            },
+            "setup:athena": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "setup:athena"
+              },
+              "configurations": {}
+            },
+            "nx-release-publish": {
+              "dependsOn": [
+                "^nx-release-publish"
+              ],
+              "executor": "@nx/js:release-publish",
+              "options": {},
+              "configurations": {}
+            },
+            "lint": {
+              "inputs": [
+                "default",
+                "{workspaceRoot}/.eslintrc.json"
+              ],
+              "cache": true,
+              "executor": "@nx/eslint:lint",
+              "outputs": [
+                "{options.outputFile}"
+              ],
+              "options": {},
+              "configurations": {}
+            }
+          },
+          "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+          "sourceRoot": "libs/features/lambda-analytics/src",
+          "projectType": "library",
+          "tags": [
+            "scope:features",
+            "type:feature"
+          ],
+          "implicitDependencies": []
+        }
+      },
+      "main-application-e2e": {
+        "name": "main-application-e2e",
+        "type": "e2e",
+        "data": {
+          "root": "apps/main-application-e2e",
+          "targets": {},
+          "name": "main-application-e2e",
+          "$schema": "../../node_modules/nx/schemas/project-schema.json",
+          "projectType": "application",
+          "sourceRoot": "apps/main-application-e2e/src",
+          "tags": [],
+          "implicitDependencies": [
+            "main-application"
+          ],
+          "// targets": "to see all targets run: nx show project main-application-e2e --web"
+        }
+      },
+      "admin-dashboard-e2e": {
+        "name": "admin-dashboard-e2e",
+        "type": "e2e",
+        "data": {
+          "root": "apps/admin-dashboard-e2e",
+          "targets": {},
+          "name": "admin-dashboard-e2e",
+          "$schema": "../../node_modules/nx/schemas/project-schema.json",
+          "projectType": "application",
+          "sourceRoot": "apps/admin-dashboard-e2e/src",
+          "tags": [],
+          "implicitDependencies": [
+            "admin-dashboard"
+          ],
+          "// targets": "to see all targets run: nx show project admin-dashboard-e2e --web"
+        }
+      },
+      "developer-tools-e2e": {
+        "name": "developer-tools-e2e",
+        "type": "e2e",
+        "data": {
+          "root": "apps/developer-tools-e2e",
+          "targets": {},
+          "name": "developer-tools-e2e",
+          "$schema": "../../node_modules/nx/schemas/project-schema.json",
+          "projectType": "application",
+          "sourceRoot": "apps/developer-tools-e2e/src",
+          "tags": [],
+          "implicitDependencies": [
+            "developer-tools"
+          ],
+          "// targets": "to see all targets run: nx show project developer-tools-e2e --web"
+        }
+      },
+      "data-access": {
+        "name": "data-access",
+        "type": "lib",
+        "data": {
+          "root": "libs/shared/data-access",
+          "name": "data-access",
+          "targets": {
+            "build": {
+              "executor": "nx:run-script",
+              "dependsOn": [
+                "^build"
+              ],
+              "inputs": [
+                "production",
+                "^production"
+              ],
+              "cache": true,
+              "options": {
+                "script": "build"
+              },
+              "configurations": {}
+            },
+            "dev": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "dev"
+              },
+              "configurations": {}
+            },
+            "clean": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "clean"
+              },
+              "configurations": {}
+            },
+            "prepare": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "prepare"
+              },
+              "configurations": {}
+            },
+            "nx-release-publish": {
+              "dependsOn": [
+                "^nx-release-publish"
+              ],
+              "executor": "@nx/js:release-publish",
+              "options": {},
+              "configurations": {}
+            },
+            "test": {
+              "inputs": [
+                "default",
+                "^production",
+                "{workspaceRoot}/jest.preset.js"
+              ],
+              "cache": true,
+              "executor": "@nx/jest:jest",
+              "outputs": [
+                "{workspaceRoot}/coverage/{projectRoot}"
+              ],
+              "options": {
+                "jestConfig": "libs/shared/data-access/jest.config.ts",
+                "passWithNoTests": true
+              },
+              "configurations": {}
+            },
+            "lint": {
+              "inputs": [
+                "default",
+                "{workspaceRoot}/.eslintrc.json"
+              ],
+              "cache": true,
+              "executor": "@nx/eslint:lint",
+              "outputs": [
+                "{options.outputFile}"
+              ],
+              "options": {},
+              "configurations": {}
+            }
+          },
+          "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+          "sourceRoot": "libs/shared/data-access/src",
+          "projectType": "library",
+          "tags": [
+            "scope:shared",
+            "type:data-access"
+          ],
+          "implicitDependencies": []
+        }
+      },
+      "scoring": {
+        "name": "scoring",
+        "type": "lib",
+        "data": {
+          "root": "libs/assessment/scoring",
+          "name": "scoring",
+          "targets": {
+            "build": {
+              "dependsOn": [
+                "^build"
+              ],
+              "inputs": [
+                "production",
+                "^production"
+              ],
+              "cache": true,
+              "executor": "@nx/js:tsc",
+              "outputs": [
+                "{options.outputPath}"
+              ],
+              "options": {
+                "outputPath": "dist/libs/assessment/scoring",
+                "main": "libs/assessment/scoring/src/index.ts",
+                "tsConfig": "libs/assessment/scoring/tsconfig.lib.json",
+                "assets": [
+                  "libs/assessment/scoring/*.md"
+                ]
+              },
+              "configurations": {}
+            }
+          },
+          "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+          "sourceRoot": "libs/assessment/scoring/src",
+          "projectType": "library",
+          "tags": [
+            "scope:assessment",
+            "type:feature"
+          ],
+          "implicitDependencies": []
+        }
+      },
+      "test-utils": {
+        "name": "test-utils",
+        "type": "lib",
+        "data": {
+          "root": "libs/testing/test-utils",
+          "name": "test-utils",
+          "targets": {
+            "lint": {
+              "executor": "@nx/eslint:lint",
+              "outputs": [
+                "{options.outputFile}"
+              ],
+              "options": {},
+              "configurations": {}
+            },
+            "type-check": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "type-check"
+              },
+              "configurations": {}
+            },
+            "test": {
+              "inputs": [
+                "default",
+                "^production",
+                "{workspaceRoot}/jest.preset.js"
+              ],
+              "cache": true,
+              "executor": "@nx/jest:jest",
+              "outputs": [
+                "{workspaceRoot}/coverage/{projectRoot}"
+              ],
+              "options": {
+                "jestConfig": "libs/testing/test-utils/jest.config.ts",
+                "passWithNoTests": true
+              },
+              "configurations": {}
+            }
+          },
+          "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+          "sourceRoot": "libs/testing/test-utils/src",
+          "projectType": "library",
+          "tags": [
+            "scope:testing",
+            "type:utils"
+          ],
+          "implicitDependencies": []
+        }
+      },
+      "api-utils": {
+        "name": "api-utils",
+        "type": "lib",
+        "data": {
+          "root": "libs/shared/api-utils",
+          "name": "api-utils",
+          "targets": {
+            "test": {
+              "executor": "@nx/jest:jest",
+              "outputs": [
+                "{workspaceRoot}/coverage/{projectRoot}"
+              ],
+              "options": {
+                "jestConfig": "libs/shared/api-utils/jest.config.ts",
+                "passWithNoTests": true
+              },
+              "configurations": {}
+            },
+            "lint": {
+              "executor": "@nx/eslint:lint",
+              "outputs": [
+                "{options.outputFile}"
+              ],
+              "options": {},
+              "configurations": {}
+            },
+            "nx-release-publish": {
+              "dependsOn": [
+                "^nx-release-publish"
+              ],
+              "executor": "@nx/js:release-publish",
+              "options": {},
+              "configurations": {}
+            }
+          },
+          "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+          "sourceRoot": "libs/shared/api-utils/src",
+          "projectType": "library",
+          "tags": [
+            "scope:shared",
+            "type:utils"
+          ],
+          "implicitDependencies": []
+        }
+      },
+      "beta-application": {
+        "name": "beta-application",
+        "type": "app",
+        "data": {
+          "root": "apps/beta-application",
+          "name": "beta-application",
+          "targets": {
+            "dev": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "dev"
+              },
+              "configurations": {}
+            },
+            "build": {
+              "executor": "@nx/next:build",
+              "outputs": [
+                "{options.outputPath}"
+              ],
+              "options": {
+                "outputPath": "dist/apps/beta-application"
+              },
+              "configurations": {
+                "production": {
+                  "optimization": true,
+                  "sourceMap": false,
+                  "extractCss": true
+                },
+                "development": {
+                  "optimization": false,
+                  "sourceMap": true,
+                  "extractCss": false
+                }
+              }
+            },
+            "start": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "start"
+              },
+              "configurations": {}
+            },
+            "lint": {
+              "executor": "@nx/eslint:lint",
+              "outputs": [
+                "{options.outputFile}"
+              ],
+              "options": {},
+              "configurations": {}
+            },
+            "type-check": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "type-check"
+              },
+              "configurations": {}
+            },
+            "test": {
+              "executor": "@nx/jest:jest",
+              "outputs": [
+                "{workspaceRoot}/coverage/{projectRoot}"
+              ],
+              "options": {
+                "jestConfig": "apps/beta-application/jest.config.ts",
+                "passWithNoTests": true
+              },
+              "configurations": {}
+            },
+            "test:unit": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "test:unit"
+              },
+              "configurations": {}
+            },
+            "test:integration": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "test:integration"
+              },
+              "configurations": {}
+            },
+            "test:e2e": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "test:e2e"
+              },
+              "configurations": {}
+            },
+            "test:watch": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "test:watch"
+              },
+              "configurations": {}
+            },
+            "test:coverage": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "test:coverage"
+              },
+              "configurations": {}
+            },
+            "analyze": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "analyze"
+              },
+              "configurations": {}
+            },
+            "performance-test": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "performance-test"
+              },
+              "configurations": {}
+            },
+            "bundle-analyze": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "bundle-analyze"
+              },
+              "configurations": {}
+            },
+            "version": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "version"
+              },
+              "configurations": {}
+            },
+            "version:bump": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "version:bump"
+              },
+              "configurations": {}
+            },
+            "version:beta": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "version:beta"
+              },
+              "configurations": {}
+            },
+            "deploy": {
+              "dependsOn": [
+                "build"
+              ],
+              "cache": false,
+              "executor": "@nx/workspace:run-commands",
+              "options": {
+                "commands": [
+                  "vercel --prod --token=$VERCEL_TOKEN"
+                ],
+                "cwd": "apps/beta-application"
+              },
+              "configurations": {}
+            },
+            "deploy:preview": {
+              "dependsOn": [
+                "build"
+              ],
+              "cache": false,
+              "executor": "@nx/workspace:run-commands",
+              "options": {
+                "commands": [
+                  "vercel --token=$VERCEL_TOKEN"
+                ],
+                "cwd": "apps/beta-application"
+              },
+              "configurations": {}
+            },
+            "analyze-bundle": {
+              "dependsOn": [
+                "build"
+              ],
+              "inputs": [
+                "production"
+              ],
+              "cache": true,
+              "executor": "@nx/workspace:run-commands",
+              "options": {
+                "commands": [
+                  "ANALYZE=true npm run build"
+                ],
+                "cwd": "apps/beta-application"
+              },
+              "configurations": {}
+            },
+            "lighthouse": {
+              "inputs": [
+                "production"
+              ],
+              "cache": false,
+              "executor": "@nx/workspace:run-commands",
+              "options": {
+                "commands": [
+                  "npx lighthouse http://localhost:3009 --output=json --output-path=./lighthouse-report.json"
+                ],
+                "cwd": "apps/beta-application"
+              },
+              "configurations": {}
+            },
+            "serve": {
+              "executor": "@nx/next:server",
+              "options": {
+                "buildTarget": "beta-application:build",
+                "dev": true
+              },
+              "configurations": {}
+            }
+          },
+          "sourceRoot": "apps/beta-application/src",
+          "projectType": "application",
+          "$schema": "../../node_modules/nx/schemas/project-schema.json",
+          "implicitDependencies": [],
+          "tags": []
+        }
+      },
+      "main-application": {
+        "name": "main-application",
+        "type": "app",
+        "data": {
+          "root": "apps/main-application",
+          "name": "main-application",
+          "targets": {
+            "dev": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "dev"
+              },
+              "configurations": {}
+            },
+            "build": {
+              "executor": "@nx/next:build",
+              "outputs": [
+                "{options.outputPath}"
+              ],
+              "options": {
+                "outputPath": "dist/apps/main-application"
+              },
+              "configurations": {
+                "production": {
+                  "optimization": true,
+                  "sourceMap": false,
+                  "extractCss": true
+                },
+                "development": {
+                  "optimization": false,
+                  "sourceMap": true,
+                  "extractCss": false
+                }
+              }
+            },
+            "start": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "start"
+              },
+              "configurations": {}
+            },
+            "lint": {
+              "executor": "@nx/eslint:lint",
+              "outputs": [
+                "{options.outputFile}"
+              ],
+              "options": {},
+              "configurations": {}
+            },
+            "type-check": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "type-check"
+              },
+              "configurations": {}
+            },
+            "test": {
+              "executor": "@nx/jest:jest",
+              "outputs": [
+                "{workspaceRoot}/coverage/{projectRoot}"
+              ],
+              "options": {
+                "jestConfig": "apps/main-application/jest.config.ts",
+                "passWithNoTests": true
+              },
+              "configurations": {}
+            },
+            "test:unit": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "test:unit"
+              },
+              "configurations": {}
+            },
+            "test:integration": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "test:integration"
+              },
+              "configurations": {}
+            },
+            "test:e2e": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "test:e2e"
+              },
+              "configurations": {}
+            },
+            "test:watch": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "test:watch"
+              },
+              "configurations": {}
+            },
+            "test:coverage": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "test:coverage"
+              },
+              "configurations": {}
+            },
+            "analyze": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "analyze"
+              },
+              "configurations": {}
+            },
+            "performance-test": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "performance-test"
+              },
+              "configurations": {}
+            },
+            "bundle-analyze": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "bundle-analyze"
+              },
+              "configurations": {}
+            },
+            "version": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "version"
+              },
+              "configurations": {}
+            },
+            "version:bump": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "version:bump"
+              },
+              "configurations": {}
+            },
+            "deploy": {
+              "dependsOn": [
+                "build"
+              ],
+              "cache": false,
+              "executor": "@nx/workspace:run-commands",
+              "options": {
+                "commands": [
+                  "vercel --prod --token=$VERCEL_TOKEN"
+                ],
+                "cwd": "apps/main-application"
+              },
+              "configurations": {}
+            },
+            "deploy:preview": {
+              "dependsOn": [
+                "build"
+              ],
+              "cache": false,
+              "executor": "@nx/workspace:run-commands",
+              "options": {
+                "commands": [
+                  "vercel --token=$VERCEL_TOKEN"
+                ],
+                "cwd": "apps/main-application"
+              },
+              "configurations": {}
+            },
+            "analyze-bundle": {
+              "dependsOn": [
+                "build"
+              ],
+              "inputs": [
+                "production"
+              ],
+              "cache": true,
+              "executor": "@nx/workspace:run-commands",
+              "options": {
+                "commands": [
+                  "ANALYZE=true npm run build"
+                ],
+                "cwd": "apps/main-application"
+              },
+              "configurations": {}
+            },
+            "lighthouse": {
+              "inputs": [
+                "production"
+              ],
+              "cache": false,
+              "executor": "@nx/workspace:run-commands",
+              "options": {
+                "commands": [
+                  "npx lighthouse http://localhost:3000 --output=json --output-path=./lighthouse-report.json"
+                ],
+                "cwd": "apps/main-application"
+              },
+              "configurations": {}
+            },
+            "serve": {
+              "executor": "@nx/next:server",
+              "options": {
+                "buildTarget": "main-application:build",
+                "dev": true
+              },
+              "configurations": {}
+            }
+          },
+          "sourceRoot": "apps/main-application/src",
+          "projectType": "application",
+          "$schema": "../../node_modules/nx/schemas/project-schema.json",
+          "implicitDependencies": [],
+          "tags": []
+        }
+      },
+      "admin-dashboard": {
+        "name": "admin-dashboard",
+        "type": "app",
+        "data": {
+          "root": "apps/admin-dashboard",
+          "name": "admin-dashboard",
+          "targets": {
+            "dev": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "dev"
+              },
+              "configurations": {}
+            },
+            "build": {
+              "executor": "@nx/next:build",
+              "outputs": [
+                "{options.outputPath}"
+              ],
+              "options": {
+                "outputPath": "dist/apps/admin-dashboard"
+              },
+              "configurations": {
+                "production": {
+                  "optimization": true,
+                  "sourceMap": false,
+                  "extractCss": true
+                },
+                "development": {
+                  "optimization": false,
+                  "sourceMap": true,
+                  "extractCss": false
+                }
+              }
+            },
+            "start": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "start"
+              },
+              "configurations": {}
+            },
+            "lint": {
+              "executor": "@nx/eslint:lint",
+              "outputs": [
+                "{options.outputFile}"
+              ],
+              "options": {},
+              "configurations": {}
+            },
+            "type-check": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "type-check"
+              },
+              "configurations": {}
+            },
+            "test": {
+              "inputs": [
+                "default",
+                "^production",
+                "{workspaceRoot}/jest.preset.js"
+              ],
+              "cache": true,
+              "executor": "@nx/jest:jest",
+              "outputs": [
+                "{workspaceRoot}/coverage/{projectRoot}"
+              ],
+              "options": {
+                "jestConfig": "apps/admin-dashboard/jest.config.ts",
+                "passWithNoTests": true
+              },
+              "configurations": {}
+            },
+            "deploy": {
+              "dependsOn": [
+                "build"
+              ],
+              "cache": false,
+              "executor": "@nx/workspace:run-commands",
+              "options": {
+                "commands": [
+                  "vercel --prod --token=$VERCEL_TOKEN"
+                ],
+                "cwd": "apps/admin-dashboard"
+              },
+              "configurations": {}
+            },
+            "deploy:preview": {
+              "dependsOn": [
+                "build"
+              ],
+              "cache": false,
+              "executor": "@nx/workspace:run-commands",
+              "options": {
+                "commands": [
+                  "vercel --token=$VERCEL_TOKEN"
+                ],
+                "cwd": "apps/admin-dashboard"
+              },
+              "configurations": {}
+            },
+            "analyze-bundle": {
+              "dependsOn": [
+                "build"
+              ],
+              "inputs": [
+                "production"
+              ],
+              "cache": true,
+              "executor": "@nx/workspace:run-commands",
+              "options": {
+                "commands": [
+                  "ANALYZE=true npm run build"
+                ],
+                "cwd": "apps/admin-dashboard"
+              },
+              "configurations": {}
+            },
+            "lighthouse": {
+              "inputs": [
+                "production"
+              ],
+              "cache": false,
+              "executor": "@nx/workspace:run-commands",
+              "options": {
+                "commands": [
+                  "npx lighthouse http://localhost:3001 --output=json --output-path=./lighthouse-report.json"
+                ],
+                "cwd": "apps/admin-dashboard"
+              },
+              "configurations": {}
+            },
+            "serve": {
+              "executor": "@nx/next:server",
+              "options": {
+                "buildTarget": "admin-dashboard:build",
+                "dev": true
+              },
+              "configurations": {}
+            }
+          },
+          "sourceRoot": "apps/admin-dashboard/src",
+          "projectType": "application",
+          "$schema": "../../node_modules/nx/schemas/project-schema.json",
+          "implicitDependencies": [],
+          "tags": []
+        }
+      },
+      "beta-portal-e2e": {
+        "name": "beta-portal-e2e",
+        "type": "e2e",
+        "data": {
+          "root": "apps/beta-portal-e2e",
+          "targets": {},
+          "name": "beta-portal-e2e",
+          "$schema": "../../node_modules/nx/schemas/project-schema.json",
+          "projectType": "application",
+          "sourceRoot": "apps/beta-portal-e2e/src",
+          "tags": [],
+          "implicitDependencies": [
+            "beta-portal"
+          ],
+          "// targets": "to see all targets run: nx show project beta-portal-e2e --web"
+        }
+      },
+      "developer-tools": {
+        "name": "developer-tools",
+        "type": "app",
+        "data": {
+          "root": "apps/developer-tools",
+          "targets": {
+            "deploy": {
+              "dependsOn": [
+                "build"
+              ],
+              "cache": false,
+              "executor": "@nx/workspace:run-commands",
+              "options": {
+                "commands": [
+                  "echo \"Deploying developer-tools...\"",
+                  "npm run build",
+                  "echo \"Deploy to developer-tools environment\""
+                ],
+                "parallel": false
+              },
+              "configurations": {
+                "production": {
+                  "commands": [
+                    "nx build developer-tools --configuration=production",
+                    "echo \"Deploy to production for developer-tools\""
+                  ]
+                },
+                "staging": {
+                  "commands": [
+                    "nx build developer-tools --configuration=staging",
+                    "echo \"Deploy to staging for developer-tools\""
+                  ]
+                }
+              }
+            }
+          },
+          "name": "developer-tools",
+          "$schema": "../../node_modules/nx/schemas/project-schema.json",
+          "sourceRoot": "apps/developer-tools",
+          "projectType": "application",
+          "tags": [
+            "scope:dev",
+            "type:app"
+          ],
+          "// targets": "to see all targets run: nx show project developer-tools --web",
+          "implicitDependencies": []
+        }
+      },
+      "config": {
+        "name": "config",
+        "type": "lib",
+        "data": {
+          "root": "libs/shared/config",
+          "name": "config",
+          "targets": {
+            "build": {
+              "executor": "nx:run-script",
+              "dependsOn": [
+                "^build"
+              ],
+              "inputs": [
+                "production",
+                "^production"
+              ],
+              "cache": true,
+              "options": {
+                "script": "build"
+              },
+              "configurations": {}
+            },
+            "dev": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "dev"
+              },
+              "configurations": {}
+            },
+            "clean": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "clean"
+              },
+              "configurations": {}
+            },
+            "validate:env": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "validate:env"
+              },
+              "configurations": {}
+            },
+            "validate:env:prod": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "validate:env:prod"
+              },
+              "configurations": {}
+            },
+            "validate:env:beta": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "validate:env:beta"
+              },
+              "configurations": {}
+            },
+            "health:check": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "health:check"
+              },
+              "configurations": {}
+            },
+            "test": {
+              "executor": "@nx/jest:jest",
+              "outputs": [
+                "{workspaceRoot}/coverage/{projectRoot}"
+              ],
+              "options": {
+                "jestConfig": "libs/shared/config/jest.config.ts",
+                "passWithNoTests": true
+              },
+              "configurations": {}
+            },
+            "nx-release-publish": {
+              "dependsOn": [
+                "^nx-release-publish"
+              ],
+              "executor": "@nx/js:release-publish",
+              "options": {},
+              "configurations": {}
+            },
+            "lint": {
+              "inputs": [
+                "default",
+                "{workspaceRoot}/.eslintrc.json"
+              ],
+              "cache": true,
+              "executor": "@nx/eslint:lint",
+              "outputs": [
+                "{options.outputFile}"
+              ],
+              "options": {},
+              "configurations": {}
+            }
+          },
+          "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+          "sourceRoot": "libs/shared/config/src",
+          "projectType": "library",
+          "tags": [
+            "scope:shared",
+            "type:config"
+          ],
+          "implicitDependencies": []
+        }
+      },
+      "types": {
+        "name": "types",
+        "type": "lib",
+        "data": {
+          "root": "libs/shared/types",
+          "name": "types",
+          "targets": {
+            "build": {
+              "executor": "nx:run-script",
+              "dependsOn": [
+                "^build"
+              ],
+              "inputs": [
+                "production",
+                "^production"
+              ],
+              "cache": true,
+              "options": {
+                "script": "build"
+              },
+              "configurations": {}
+            },
+            "clean": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "clean"
+              },
+              "configurations": {}
+            },
+            "type-check": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "type-check"
+              },
+              "configurations": {}
+            },
+            "watch": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "watch"
+              },
+              "configurations": {}
+            },
+            "nx-release-publish": {
+              "dependsOn": [
+                "^nx-release-publish"
+              ],
+              "executor": "@nx/js:release-publish",
+              "options": {},
+              "configurations": {}
+            },
+            "test": {
+              "inputs": [
+                "default",
+                "^production",
+                "{workspaceRoot}/jest.preset.js"
+              ],
+              "cache": true,
+              "executor": "@nx/jest:jest",
+              "outputs": [
+                "{workspaceRoot}/coverage/{projectRoot}"
+              ],
+              "options": {
+                "jestConfig": "libs/shared/types/jest.config.ts",
+                "passWithNoTests": true
+              },
+              "configurations": {}
+            },
+            "lint": {
+              "inputs": [
+                "default",
+                "{workspaceRoot}/.eslintrc.json"
+              ],
+              "cache": true,
+              "executor": "@nx/eslint:lint",
+              "outputs": [
+                "{options.outputFile}"
+              ],
+              "options": {},
+              "configurations": {}
+            }
+          },
+          "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+          "sourceRoot": "libs/shared/types/src",
+          "projectType": "library",
+          "tags": [
+            "scope:shared",
+            "type:types"
+          ],
+          "implicitDependencies": []
+        }
+      },
+      "beta-portal": {
+        "name": "beta-portal",
+        "type": "app",
+        "data": {
+          "root": "apps/beta-portal",
+          "targets": {
+            "deploy": {
+              "dependsOn": [
+                "build"
+              ],
+              "cache": false,
+              "executor": "@nx/workspace:run-commands",
+              "options": {
+                "commands": [
+                  "echo \"Deploying beta-portal...\"",
+                  "npm run build",
+                  "echo \"Deploy to beta-portal environment\""
+                ],
+                "parallel": false
+              },
+              "configurations": {
+                "production": {
+                  "commands": [
+                    "nx build beta-portal --configuration=production",
+                    "echo \"Deploy to production for beta-portal\""
+                  ]
+                },
+                "staging": {
+                  "commands": [
+                    "nx build beta-portal --configuration=staging",
+                    "echo \"Deploy to staging for beta-portal\""
+                  ]
+                }
+              }
+            }
+          },
+          "name": "beta-portal",
+          "$schema": "../../node_modules/nx/schemas/project-schema.json",
+          "sourceRoot": "apps/beta-portal",
+          "projectType": "application",
+          "tags": [
+            "scope:beta",
+            "type:app"
+          ],
+          "// targets": "to see all targets run: nx show project beta-portal --web",
+          "implicitDependencies": []
+        }
+      },
+      "dev-sandbox": {
+        "name": "dev-sandbox",
+        "type": "app",
+        "data": {
+          "root": "apps/dev-sandbox",
+          "name": "dev-sandbox",
+          "targets": {
+            "dev": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "dev"
+              },
+              "configurations": {}
+            },
+            "build": {
+              "executor": "@nx/next:build",
+              "outputs": [
+                "{options.outputPath}"
+              ],
+              "options": {
+                "outputPath": "dist/apps/dev-sandbox"
+              },
+              "configurations": {
+                "production": {
+                  "optimization": true,
+                  "sourceMap": false,
+                  "extractCss": true
+                },
+                "development": {
+                  "optimization": false,
+                  "sourceMap": true,
+                  "extractCss": false
+                }
+              }
+            },
+            "start": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "start"
+              },
+              "configurations": {}
+            },
+            "lint": {
+              "executor": "@nx/eslint:lint",
+              "outputs": [
+                "{options.outputFile}"
+              ],
+              "options": {},
+              "configurations": {}
+            },
+            "type-check": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "type-check"
+              },
+              "configurations": {}
+            },
+            "storybook": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "storybook"
+              },
+              "configurations": {}
+            },
+            "storybook:build": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "storybook:build"
+              },
+              "configurations": {}
+            },
+            "test": {
+              "executor": "@nx/jest:jest",
+              "outputs": [
+                "{workspaceRoot}/coverage/{projectRoot}"
+              ],
+              "options": {
+                "jestConfig": "apps/dev-sandbox/jest.config.ts",
+                "passWithNoTests": true
+              },
+              "configurations": {}
+            },
+            "test:unit": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "test:unit"
+              },
+              "configurations": {}
+            },
+            "test:integration": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "test:integration"
+              },
+              "configurations": {}
+            },
+            "test:e2e": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "test:e2e"
+              },
+              "configurations": {}
+            },
+            "test:watch": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "test:watch"
+              },
+              "configurations": {}
+            },
+            "test:coverage": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "test:coverage"
+              },
+              "configurations": {}
+            },
+            "format": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "format"
+              },
+              "configurations": {}
+            },
+            "format:check": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "format:check"
+              },
+              "configurations": {}
+            },
+            "generate:component": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "generate:component"
+              },
+              "configurations": {}
+            },
+            "generate:api": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "generate:api"
+              },
+              "configurations": {}
+            },
+            "generate:page": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "generate:page"
+              },
+              "configurations": {}
+            },
+            "dev:clean": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "dev:clean"
+              },
+              "configurations": {}
+            },
+            "dev:check": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "dev:check"
+              },
+              "configurations": {}
+            },
+            "dev:info": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "dev:info"
+              },
+              "configurations": {}
+            },
+            "dev:analyze": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "dev:analyze"
+              },
+              "configurations": {}
+            },
+            "components:index": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "components:index"
+              },
+              "configurations": {}
+            },
+            "version": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "version"
+              },
+              "configurations": {}
+            },
+            "version:bump": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "version:bump"
+              },
+              "configurations": {}
+            },
+            "version:dev": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "version:dev"
+              },
+              "configurations": {}
+            },
+            "deploy": {
+              "dependsOn": [
+                "build"
+              ],
+              "cache": false,
+              "executor": "@nx/workspace:run-commands",
+              "options": {
+                "commands": [
+                  "vercel --prod --token=$VERCEL_TOKEN"
+                ],
+                "cwd": "apps/dev-sandbox"
+              },
+              "configurations": {}
+            },
+            "deploy:preview": {
+              "dependsOn": [
+                "build"
+              ],
+              "cache": false,
+              "executor": "@nx/workspace:run-commands",
+              "options": {
+                "commands": [
+                  "vercel --token=$VERCEL_TOKEN"
+                ],
+                "cwd": "apps/dev-sandbox"
+              },
+              "configurations": {}
+            },
+            "analyze-bundle": {
+              "dependsOn": [
+                "build"
+              ],
+              "inputs": [
+                "production"
+              ],
+              "cache": true,
+              "executor": "@nx/workspace:run-commands",
+              "options": {
+                "commands": [
+                  "ANALYZE=true npm run build"
+                ],
+                "cwd": "apps/dev-sandbox"
+              },
+              "configurations": {}
+            },
+            "lighthouse": {
+              "inputs": [
+                "production"
+              ],
+              "cache": false,
+              "executor": "@nx/workspace:run-commands",
+              "options": {
+                "commands": [
+                  "npx lighthouse http://localhost:3010 --output=json --output-path=./lighthouse-report.json"
+                ],
+                "cwd": "apps/dev-sandbox"
+              },
+              "configurations": {}
+            },
+            "docker:build": {
+              "dependsOn": [
+                "build"
+              ],
+              "inputs": [
+                "production"
+              ],
+              "cache": true,
+              "executor": "@nx/workspace:run-commands",
+              "options": {
+                "commands": [
+                  "docker build -f Dockerfile -t ioc-dev-sandbox:latest ."
+                ],
+                "cwd": "apps/dev-sandbox"
+              },
+              "configurations": {}
+            },
+            "serve": {
+              "executor": "@nx/next:server",
+              "options": {
+                "buildTarget": "dev-sandbox:build",
+                "dev": true
+              },
+              "configurations": {}
+            },
+            "docker:run": {
+              "executor": "@nx/workspace:run-commands",
+              "options": {
+                "commands": [
+                  "docker run -p 3010:3000 --env-file .env.local ioc-dev-sandbox:latest"
+                ],
+                "cwd": "apps/dev-sandbox"
+              },
+              "configurations": {}
+            }
+          },
+          "sourceRoot": "apps/dev-sandbox/src",
+          "projectType": "application",
+          "$schema": "../../node_modules/nx/schemas/project-schema.json",
+          "implicitDependencies": [],
+          "tags": []
+        }
+      },
+      "ui": {
+        "name": "ui",
+        "type": "lib",
+        "data": {
+          "root": "libs/shared/ui",
+          "name": "ui",
+          "targets": {
+            "build": {
+              "executor": "nx:run-script",
+              "dependsOn": [
+                "^build"
+              ],
+              "inputs": [
+                "production",
+                "^production"
+              ],
+              "cache": true,
+              "options": {
+                "script": "build"
+              },
+              "configurations": {}
+            },
+            "dev": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "dev"
+              },
+              "configurations": {}
+            },
+            "clean": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "clean"
+              },
+              "configurations": {}
+            },
+            "type-check": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "type-check"
+              },
+              "configurations": {}
+            },
+            "test": {
+              "inputs": [
+                "default",
+                "^production",
+                "{workspaceRoot}/jest.preset.js"
+              ],
+              "cache": true,
+              "executor": "@nx/jest:jest",
+              "outputs": [
+                "{workspaceRoot}/coverage/{projectRoot}"
+              ],
+              "options": {
+                "jestConfig": "libs/shared/ui/jest.config.ts",
+                "passWithNoTests": true
+              },
+              "configurations": {}
+            },
+            "lint": {
+              "inputs": [
+                "default",
+                "{workspaceRoot}/.eslintrc.json"
+              ],
+              "cache": true,
+              "executor": "@nx/eslint:lint",
+              "outputs": [
+                "{options.outputFile}"
+              ],
+              "options": {},
+              "configurations": {}
+            }
+          },
+          "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+          "sourceRoot": "libs/shared/ui/src",
+          "projectType": "library",
+          "tags": [
+            "scope:shared",
+            "type:ui"
+          ],
+          "implicitDependencies": []
+        }
+      }
+    },
+    "dependencies": {
+      "ocean-analytics": [],
+      "lambda-analytics": [],
+      "main-application-e2e": [
+        {
+          "source": "main-application-e2e",
+          "target": "main-application",
+          "type": "implicit"
+        }
+      ],
+      "admin-dashboard-e2e": [
+        {
+          "source": "admin-dashboard-e2e",
+          "target": "admin-dashboard",
+          "type": "implicit"
+        }
+      ],
+      "developer-tools-e2e": [
+        {
+          "source": "developer-tools-e2e",
+          "target": "developer-tools",
+          "type": "implicit"
+        }
+      ],
+      "data-access": [
+        {
+          "source": "data-access",
+          "target": "types",
+          "type": "static"
+        }
+      ],
+      "scoring": [],
+      "test-utils": [
+        {
+          "source": "test-utils",
+          "target": "types",
+          "type": "static"
+        }
+      ],
+      "api-utils": [
+        {
+          "source": "api-utils",
+          "target": "data-access",
+          "type": "static"
+        }
+      ],
+      "beta-application": [
+        {
+          "source": "beta-application",
+          "target": "ui",
+          "type": "static"
+        },
+        {
+          "source": "beta-application",
+          "target": "data-access",
+          "type": "static"
+        },
+        {
+          "source": "beta-application",
+          "target": "data-access",
+          "type": "dynamic"
+        },
+        {
+          "source": "beta-application",
+          "target": "api-utils",
+          "type": "static"
+        },
+        {
+          "source": "beta-application",
+          "target": "types",
+          "type": "static"
+        },
+        {
+          "source": "beta-application",
+          "target": "config",
+          "type": "static"
+        }
+      ],
+      "main-application": [
+        {
+          "source": "main-application",
+          "target": "ui",
+          "type": "static"
+        },
+        {
+          "source": "main-application",
+          "target": "data-access",
+          "type": "static"
+        },
+        {
+          "source": "main-application",
+          "target": "api-utils",
+          "type": "static"
+        },
+        {
+          "source": "main-application",
+          "target": "types",
+          "type": "static"
+        },
+        {
+          "source": "main-application",
+          "target": "config",
+          "type": "static"
+        },
+        {
+          "source": "main-application",
+          "target": "test-utils",
+          "type": "static"
+        }
+      ],
+      "admin-dashboard": [],
+      "beta-portal-e2e": [
+        {
+          "source": "beta-portal-e2e",
+          "target": "beta-portal",
+          "type": "implicit"
+        }
+      ],
+      "developer-tools": [],
+      "config": [],
+      "types": [],
+      "beta-portal": [],
+      "dev-sandbox": [
+        {
+          "source": "dev-sandbox",
+          "target": "config",
+          "type": "static"
+        }
+      ],
+      "ui": [
+        {
+          "source": "ui",
+          "target": "data-access",
+          "type": "static"
+        },
+        {
+          "source": "ui",
+          "target": "types",
+          "type": "static"
+        }
+      ]
+    }
+  },
+  "affectedProjects": [
+    "admin-dashboard-e2e",
+    "admin-dashboard",
+    "beta-application",
+    "beta-portal-e2e",
+    "beta-portal",
+    "dev-sandbox",
+    "developer-tools-e2e",
+    "developer-tools",
+    "main-application-e2e",
+    "main-application",
+    "ocean-analytics",
+    "scoring",
+    "lambda-analytics",
+    "api-utils",
+    "config",
+    "data-access",
+    "ui",
+    "types",
+    "test-utils"
+  ],
+  "criticalPath": [
+    "admin-dashboard-e2e",
+    "admin-dashboard",
+    "beta-application",
+    "beta-portal-e2e",
+    "beta-portal",
+    "dev-sandbox",
+    "developer-tools-e2e",
+    "developer-tools",
+    "main-application-e2e",
+    "main-application",
+    "ocean-analytics",
+    "scoring",
+    "lambda-analytics",
+    "api-utils",
+    "config",
+    "data-access",
+    "ui",
+    "types",
+    "test-utils"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "projects": {
+    "admin-dashboard": "apps/admin-dashboard",
+    "main-application": "apps/main-application",
+    "beta-application": "apps/beta-application",
+    "dev-sandbox": "apps/dev-sandbox",
+    "ui": "libs/shared/ui",
+    "data-access": "libs/shared/data-access",
+    "types": "libs/shared/types",
+    "config": "libs/shared/config",
+    "api-utils": "libs/shared/api-utils",
+    "test-utils": "libs/testing/test-utils",
+    "lambda-analytics": "libs/features/lambda-analytics"
+  }
+}

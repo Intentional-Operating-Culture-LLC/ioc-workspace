@@ -1,44 +1,70 @@
-# See https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
 
-# compiled output
-dist
-tmp
-out-tsc
+# Testing
+coverage/
+testing-env/
+__pycache__/
+*.pyc
 
-# dependencies
-node_modules
+# Next.js
+.next/
+out/
 
-# IDEs and editors
-/.idea
-.project
-.classpath
-.c9/
-*.launch
-.settings/
-*.sublime-workspace
+# Production
+build/
+dist/
 
-# IDE - VSCode
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
+# Turbo
+.turbo/
 
-# misc
-/.sass-cache
-/connect.lock
-/coverage
-/libpeerconnection.log
-npm-debug.log
-yarn-error.log
-testem.log
-/typings
+# TypeScript
+*.tsbuildinfo
 
-# System Files
+# Misc
 .DS_Store
+*.pem
+
+# Debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Local env files
+.env*.local
+.env
+.env.local
+.env.production
+.env.staging
+
+# Vercel
+.vercel
+
+# IDE
+.vscode/
+.idea/
+
+# OS
 Thumbs.db
 
-.nx/cache
-.nx/workspace-data
-.cursor/rules/nx-rules.mdc
-.github/instructions/nx.instructions.md
+# Temporary files
+*.log
+*.tmp
+*.temp
+staging.log
+
+# Security - NEVER commit these
+ioc-keys/
+*_accessKeys.csv
+*api*.txt
+*token*.txt
+*.pem
+*.key
+*.cert
+
+# Automated Testing
+automated-testing/.env
+automated-testing/logs/
+*.log

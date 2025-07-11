@@ -1,0 +1,30 @@
+{
+  "name": "@ioc/api-utils",
+  "version": "1.0.0",
+  "description": "Shared API utilities for IOC applications",
+  "main": "./src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./auth": "./src/auth.js",
+    "./errors": "./src/errors.js",
+    "./validation": "./src/validation.js",
+    "./routes": "./src/routes.js"
+  },
+  "scripts": {
+    "test": "jest",
+    "lint": "eslint src/"
+  },
+  "dependencies": {
+    "zod": "^3.22.4",
+    "date-fns": "^2.30.0"
+  },
+  "peerDependencies": {
+    "@ioc/lib": "*",
+    "next": "^15.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.4",
+    "eslint": "^8.55.0",
+    "jest": "^29.7.0"
+  }
+}

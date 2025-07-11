@@ -1,0 +1,98 @@
+{
+  "name": "@ioc-core/config",
+  "version": "0.1.0",
+  "description": "Shared configuration packages for IOC Core monorepo",
+  "main": "src/index.js",
+  "exports": {
+    ".": {
+      "import": "./src/index.js",
+      "require": "./src/index.js"
+    },
+    "./next": {
+      "import": "./src/next.config.js",
+      "require": "./src/next.config.js"
+    },
+    "./tailwind": {
+      "import": "./src/tailwind.config.js",
+      "require": "./src/tailwind.config.js"
+    },
+    "./typescript": {
+      "import": "./src/tsconfig.json",
+      "require": "./src/tsconfig.json"
+    },
+    "./typescript/base": {
+      "import": "./src/tsconfig.base.json",
+      "require": "./src/tsconfig.base.json"
+    },
+    "./eslint": {
+      "import": "./src/eslint.config.js",
+      "require": "./src/eslint.config.js"
+    },
+    "./postcss": {
+      "import": "./src/postcss.config.js",
+      "require": "./src/postcss.config.js"
+    },
+    "./env-validator": {
+      "import": "./src/env-validator-advanced.js",
+      "require": "./src/env-validator-advanced.js"
+    },
+    "./feature-flags": {
+      "import": "./src/feature-flags-advanced.js",
+      "require": "./src/feature-flags-advanced.js"
+    },
+    "./security": {
+      "import": "./src/security-config-advanced.js",
+      "require": "./src/security-config-advanced.js"
+    },
+    "./database": {
+      "import": "./src/database-config-advanced.js",
+      "require": "./src/database-config-advanced.js"
+    },
+    "./secrets": {
+      "import": "./src/secret-manager-advanced.js",
+      "require": "./src/secret-manager-advanced.js"
+    },
+    "./validation/env": "./src/validation-scripts/validate-env.js",
+    "./validation/health": "./src/validation-scripts/health-check.js"
+  },
+  "files": [
+    "src/**/*"
+  ],
+  "keywords": [
+    "config",
+    "shared",
+    "next.js",
+    "tailwind",
+    "typescript",
+    "eslint",
+    "postcss"
+  ],
+  "author": "IOC Core Team",
+  "license": "ISC",
+  "scripts": {
+    "build": "echo 'Config package uses JS files directly, no build needed'",
+    "dev": "echo 'Config package uses JS files directly, no build needed'",
+    "clean": "echo 'Config package uses JS files directly, no clean needed'",
+    "validate:env": "node src/validation-scripts/validate-env.js",
+    "validate:env:prod": "node src/validation-scripts/validate-env.js --env production",
+    "validate:env:beta": "node src/validation-scripts/validate-env.js --env staging",
+    "health:check": "node src/validation-scripts/health-check.js",
+    "test": "npm run validate:env"
+  },
+  "dependencies": {
+    "zod": "^3.22.0",
+    "chalk": "^4.1.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "webpack-bundle-analyzer": "^4.9.0"
+  },
+  "peerDependencies": {
+    "next": "^15.0.0",
+    "tailwindcss": "^4.0.0",
+    "typescript": "^5.0.0",
+    "eslint": "^8.0.0",
+    "postcss": "^8.0.0",
+    "autoprefixer": "^10.0.0"
+  }
+}

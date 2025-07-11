@@ -1,0 +1,23 @@
+{
+  "extends": [
+    "../../../.eslintrc.base.json",
+    "plugin:@nx/typescript"
+  ],
+  "ignorePatterns": [
+    "dist",
+    "node_modules",
+    "coverage"
+  ],
+  "overrides": [
+    {
+      "files": [
+        "*.ts",
+        "*.tsx"
+      ],
+      "parserOptions": {},
+      "rules": {
+        "@typescript-eslint/no-explicit-any": "error"
+      }
+    }
+  ]
+}

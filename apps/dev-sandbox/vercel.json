@@ -1,0 +1,50 @@
+{
+  "name": "ioc-dev",
+  "alias": ["dev.iocframework.com"],
+  "framework": "nextjs",
+  "buildCommand": "cd ../.. && npx turbo run build --filter=@ioc/dev",
+  "installCommand": "cd ../.. && npm ci",
+  "outputDirectory": ".next",
+  "ignoreCommand": "npx turbo-ignore @ioc/dev",
+  "env": {
+    "NEXT_PUBLIC_APP_NAME": "IOC Developer Tools",
+    "NEXT_PUBLIC_API_URL": "@api_url_dev",
+    "NEXT_PUBLIC_SUPABASE_URL": "@supabase_url_dev",
+    "NEXT_PUBLIC_SUPABASE_ANON_KEY": "@supabase_anon_key_dev",
+    "NEXT_PUBLIC_DEBUG_MODE": "true"
+  },
+  "build": {
+    "env": {
+      "NODE_ENV": "development",
+      "ANALYZE": "true",
+      "NEXT_TELEMETRY_DISABLED": "1",
+      "DEBUG": "true"
+    }
+  },
+  "functions": {
+    "app/api/**.ts": {
+      "maxDuration": 60,
+      "memory": 3008
+    }
+  },
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        },
+        {
+          "key": "X-Development-Mode",
+          "value": "true"
+        }
+      ]
+    }
+  ],
+  "regions": ["iad1"],
+  "github": {
+    "enabled": true,
+    "autoAlias": true
+  }
+}

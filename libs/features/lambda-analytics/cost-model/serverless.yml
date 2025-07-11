@@ -1,0 +1,283 @@
+service: ioc-analytics-cost-tracking
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  stage: ${opt:stage, 'dev'}
+  region: ${opt:region, 'us-east-1'}
+  environment:
+    COST_TRACKING_TABLE: ${self:service}-${self:provider.stage}-costs
+    COST_ALERT_TOPIC: !Ref CostAlertTopic
+    STAGE: ${self:provider.stage}
+  
+  iamRoleStatements:
+    # Cost Explorer permissions
+    - Effect: Allow
+      Action:
+        - ce:GetCostAndUsage
+        - ce:GetCostForecast
+        - ce:GetUsageAndForecast
+      Resource: "*"
+    
+    # CloudWatch permissions
+    - Effect: Allow
+      Action:
+        - cloudwatch:PutMetricData
+        - cloudwatch:GetMetricStatistics
+      Resource: "*"
+    
+    # DynamoDB permissions
+    - Effect: Allow
+      Action:
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:Query
+        - dynamodb:UpdateItem
+      Resource:
+        - !GetAtt CostTrackingTable.Arn
+        - !Sub "${CostTrackingTable.Arn}/index/*"
+    
+    # SNS permissions
+    - Effect: Allow
+      Action:
+        - sns:Publish
+      Resource: !Ref CostAlertTopic
+
+functions:
+  trackCosts:
+    handler: cost-tracking-lambda.handler
+    description: Real-time AWS cost tracking and alerting
+    events:
+      # Run every hour for real-time tracking
+      - schedule:
+          rate: rate(1 hour)
+          enabled: true
+          input:
+            type: hourly
+    timeout: 60
+    memorySize: 512
+
+  dailyAggregation:
+    handler: cost-tracking-lambda.dailyAggregation
+    description: Daily cost aggregation and reporting
+    events:
+      # Run at 2 AM UTC daily
+      - schedule:
+          rate: cron(0 2 * * ? *)
+          enabled: true
+          input:
+            type: daily
+    timeout: 120
+    memorySize: 512
+
+  costApi:
+    handler: cost-api-lambda.handler
+    description: API endpoints for cost dashboard
+    events:
+      - http:
+          path: analytics/costs
+          method: GET
+          cors: true
+          authorizer: aws_iam
+      - http:
+          path: analytics/costs/{service}
+          method: GET
+          cors: true
+          authorizer: aws_iam
+      - http:
+          path: analytics/projections
+          method: GET
+          cors: true
+          authorizer: aws_iam
+      - http:
+          path: analytics/recommendations
+          method: GET
+          cors: true
+          authorizer: aws_iam
+    timeout: 30
+    memorySize: 256
+
+  budgetAlerts:
+    handler: budget-alert-lambda.handler
+    description: Budget threshold monitoring and alerts
+    events:
+      # Check budget every 30 minutes during business hours
+      - schedule:
+          rate: cron(0/30 8-18 ? * MON-FRI *)
+          enabled: true
+    timeout: 30
+    memorySize: 256
+
+resources:
+  Resources:
+    # DynamoDB Table for cost tracking
+    CostTrackingTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:provider.environment.COST_TRACKING_TABLE}
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: pk
+            AttributeType: S
+          - AttributeName: sk
+            AttributeType: S
+          - AttributeName: date
+            AttributeType: S
+        KeySchema:
+          - AttributeName: pk
+            KeyType: HASH
+          - AttributeName: sk
+            KeyType: RANGE
+        GlobalSecondaryIndexes:
+          - IndexName: date-index
+            KeySchema:
+              - AttributeName: date
+                KeyType: HASH
+              - AttributeName: pk
+                KeyType: RANGE
+            Projection:
+              ProjectionType: ALL
+        TimeToLiveSpecification:
+          AttributeName: ttl
+          Enabled: true
+        StreamSpecification:
+          StreamViewType: NEW_AND_OLD_IMAGES
+        Tags:
+          - Key: Environment
+            Value: ${self:provider.stage}
+          - Key: Service
+            Value: cost-tracking
+
+    # SNS Topic for cost alerts
+    CostAlertTopic:
+      Type: AWS::SNS::Topic
+      Properties:
+        TopicName: ${self:service}-${self:provider.stage}-cost-alerts
+        DisplayName: IOC Analytics Cost Alerts
+        Subscription:
+          - Endpoint: ${env:ALERT_EMAIL, 'alerts@iocframework.com'}
+            Protocol: email
+        Tags:
+          - Key: Environment
+            Value: ${self:provider.stage}
+          - Key: Service
+            Value: cost-tracking
+
+    # CloudWatch Dashboard for cost monitoring
+    CostMonitoringDashboard:
+      Type: AWS::CloudWatch::Dashboard
+      Properties:
+        DashboardName: ${self:service}-${self:provider.stage}-costs
+        DashboardBody: !Sub |
+          {
+            "widgets": [
+              {
+                "type": "metric",
+                "properties": {
+                  "metrics": [
+                    ["IOC/Analytics/Costs", "totalCost", {"stat": "Average"}],
+                    [".", "projectedCost", {"stat": "Average"}],
+                    [".", "budgetUtilization", {"stat": "Average"}]
+                  ],
+                  "period": 3600,
+                  "stat": "Average",
+                  "region": "${AWS::Region}",
+                  "title": "Cost Overview"
+                }
+              },
+              {
+                "type": "metric",
+                "properties": {
+                  "metrics": [
+                    ["IOC/Analytics/Costs", "costPerUser", {"stat": "Average"}]
+                  ],
+                  "period": 3600,
+                  "stat": "Average",
+                  "region": "${AWS::Region}",
+                  "title": "Unit Economics"
+                }
+              }
+            ]
+          }
+
+    # Budget for cost control
+    AnalyticsBudget:
+      Type: AWS::Budgets::Budget
+      Properties:
+        Budget:
+          BudgetName: ${self:service}-${self:provider.stage}
+          BudgetType: COST
+          TimeUnit: MONTHLY
+          BudgetLimit:
+            Amount: ${env:MONTHLY_BUDGET, '1000'}
+            Unit: USD
+          CostFilters:
+            Service:
+              - Amazon Pinpoint
+              - Amazon Simple Storage Service
+              - AWS Lambda
+              - Amazon QuickSight
+              - Amazon Athena
+              - AmazonCloudWatch
+        NotificationsWithSubscribers:
+          - Notification:
+              NotificationType: ACTUAL
+              ComparisonOperator: GREATER_THAN
+              Threshold: 80
+              ThresholdType: PERCENTAGE
+            Subscribers:
+              - SubscriptionType: EMAIL
+                Address: ${env:ALERT_EMAIL, 'alerts@iocframework.com'}
+          - Notification:
+              NotificationType: ACTUAL
+              ComparisonOperator: GREATER_THAN
+              Threshold: 95
+              ThresholdType: PERCENTAGE
+            Subscribers:
+              - SubscriptionType: SNS
+                Address: !Ref CostAlertTopic
+
+  Outputs:
+    CostTrackingTableName:
+      Description: Name of the cost tracking DynamoDB table
+      Value: !Ref CostTrackingTable
+      Export:
+        Name: ${self:service}-${self:provider.stage}-table
+
+    CostAlertTopicArn:
+      Description: ARN of the cost alert SNS topic
+      Value: !Ref CostAlertTopic
+      Export:
+        Name: ${self:service}-${self:provider.stage}-alert-topic
+
+    DashboardURL:
+      Description: URL to CloudWatch Dashboard
+      Value: !Sub https://console.aws.amazon.com/cloudwatch/home?region=${AWS::Region}#dashboards:name=${self:service}-${self:provider.stage}-costs
+
+custom:
+  # Deployment bucket
+  deploymentBucket:
+    name: ${self:service}-${self:provider.stage}-deployment
+    serverSideEncryption: AES256
+
+  # Prune old versions
+  prune:
+    automatic: true
+    number: 3
+
+  # Alerts
+  alerts:
+    stages:
+      - production
+      - staging
+    topics:
+      alarm: !Ref CostAlertTopic
+    alarms:
+      - functionErrors
+      - functionThrottles
+      - functionDuration
+
+plugins:
+  - serverless-deployment-bucket
+  - serverless-prune-plugin
+  - serverless-plugin-aws-alerts

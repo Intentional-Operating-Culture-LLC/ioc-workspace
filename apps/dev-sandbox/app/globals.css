@@ -1,0 +1,191 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Development-specific fonts */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --dev-grid: #f8fafc;
+  --dev-border: #e2e8f0;
+  --dev-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+    --dev-grid: #1e293b;
+    --dev-border: #334155;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-feature-settings: 'rlig' 1, 'calt' 1;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .dev-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  
+  .dev-card {
+    @apply bg-white rounded-lg border border-gray-200 shadow-sm;
+  }
+  
+  .dev-button {
+    @apply inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 transition-all duration-200;
+  }
+  
+  .dev-button-primary {
+    @apply dev-button text-white bg-dev-primary hover:bg-indigo-700 focus:ring-dev-primary;
+  }
+  
+  .dev-button-secondary {
+    @apply dev-button text-gray-700 bg-white border-gray-300 hover:bg-gray-50 focus:ring-dev-primary;
+  }
+  
+  .dev-input {
+    @apply block w-full rounded-md border-gray-300 shadow-sm focus:border-dev-primary focus:ring-dev-primary sm:text-sm;
+  }
+  
+  .dev-label {
+    @apply block text-sm font-medium text-gray-700 mb-1;
+  }
+  
+  .dev-code {
+    @apply font-mono text-sm bg-gray-100 rounded px-2 py-1 border;
+  }
+  
+  .dev-pre {
+    @apply font-mono text-sm bg-gray-900 text-gray-100 rounded-lg p-4 overflow-x-auto;
+  }
+  
+  .dev-badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+  
+  .dev-badge-success {
+    @apply dev-badge bg-green-100 text-green-800;
+  }
+  
+  .dev-badge-warning {
+    @apply dev-badge bg-yellow-100 text-yellow-800;
+  }
+  
+  .dev-badge-error {
+    @apply dev-badge bg-red-100 text-red-800;
+  }
+  
+  .dev-badge-info {
+    @apply dev-badge bg-blue-100 text-blue-800;
+  }
+  
+  .dev-grid-pattern {
+    background-image: 
+      linear-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+  
+  .dev-gradient-text {
+    @apply bg-gradient-to-r from-dev-primary to-dev-secondary bg-clip-text text-transparent;
+  }
+  
+  .dev-shadow-card {
+    box-shadow: 
+      0 1px 3px 0 rgb(0 0 0 / 0.1), 
+      0 1px 2px -1px rgb(0 0 0 / 0.1),
+      0 0 0 1px rgb(0 0 0 / 0.05);
+  }
+  
+  .dev-focus-ring {
+    @apply focus:outline-none focus:ring-2 focus:ring-dev-primary focus:ring-offset-2;
+  }
+}
+
+/* Scrollbar Styling */
+.dev-scrollbar::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.dev-scrollbar::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 4px;
+}
+
+.dev-scrollbar::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+.dev-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Code Syntax Highlighting */
+.dev-syntax {
+  @apply font-mono text-sm;
+}
+
+.dev-syntax .keyword {
+  @apply text-purple-600 font-semibold;
+}
+
+.dev-syntax .string {
+  @apply text-green-600;
+}
+
+.dev-syntax .comment {
+  @apply text-gray-500 italic;
+}
+
+.dev-syntax .number {
+  @apply text-blue-600;
+}
+
+.dev-syntax .function {
+  @apply text-indigo-600 font-medium;
+}
+
+/* Animation utilities */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dev-animate-fade-in {
+  animation: fade-in 0.3s ease-out;
+}
+
+/* Component showcase styles */
+.dev-showcase-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  padding: 1.5rem;
+}
+
+.dev-component-preview {
+  @apply dev-card p-6 space-y-4;
+  min-height: 200px;
+}
+
+.dev-component-code {
+  @apply dev-pre text-xs max-h-40 overflow-y-auto dev-scrollbar;
+}
